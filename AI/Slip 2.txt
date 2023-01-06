@@ -2,31 +2,18 @@ Write a Program to check whether the given no is prime or not.
 
 SOLUTION 
 
-# Python program to check if the input number is prime or not
-num = 407
+num=int(input("Enter your number"))
+if num > 1: 
+    for i in range(2, int(num/2)+1): 
+         if (num % i) == 0: 
+              print(num, "is not a prime number") 
+              break 
+    else: 
+          print(num, "is a prime number") 
+          # print(num, "is not a prime number")
 
-# take input from the user
-# num = int(input("Enter a number: "))
-# prime numbers are greater than 1
-if num > 1:
- # check for factors
-for i in range(2,num):
-if (num % i) == 0:
-print(num,"is not a prime number")
-print(i,"times",num//i,"is",num)
-break
-else:
-print(num,"is a prime number")
-# if input number is less than
-# or equal to 1, it is not prime
-else:
-print(num,"is not a prime number")
 
-Output
-407 is not a prime number
-11 times 37 is 407
-
-Program to perform different set operations like Difference of E and N Symmetric difference of E and N  where                 
+2)Program to perform different set operations like Difference of E and N Symmetric difference of E and N  where                 
 E = {0, 2, 4, 6, 8}; and N = {1, 2, 3, 4, 5};
 
 SOLUTION 
