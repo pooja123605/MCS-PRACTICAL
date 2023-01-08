@@ -1,0 +1,424 @@
+Create abstract class Shape with abstract functions volume() and
+display(). Extend two classes Cube and Cylinder from it. Create
+objects of Cube and Cylinder, Calculate volume of each and display
+it.
+(create abstract class :5M extend classes : 5M functions: 5M each
+display: 10M)
+
+SOLUTION:
+
+abstract class Shape(var r : Int , h : Int = 0) {
+ var v:Double = 0
+ def volume()
+ def disp()
+} 
+class Cube( r : Int) extends Shape(r) { 
+ def volume() = v = r*r*r
+ def disp() = println(v)} 
+class Cylinder(r:Int , h:Int) extends Shape(r,h) { 
+ def volume() = v = 3.14 * r * r * h
+ def disp() = println(v)}
+object shape_class { 
+ def main(args: Array[String]) { 
+ println("Enter r & h")
+ val r = scala.io.StdIn.readInt()
+ val h = scala.io.StdIn.readInt() 
+ val c = new Cube(r)
+ c.volume()
+ c.disp() 
+ val cl = new Cylinder(r,h)
+ cl.volume()
+ cl.disp()
+ }
+}
+
+
+Slip 17 Mongodb 
+>C:\Program Files\MongoDB\Server\4.2\bin>mongo
+> show dbs
+> use Slip_17
+
+> db.createCollection("Mobile_Shopping")
+{ "ok" : 1 }
+> db.createCollection("Customers")
+{ "ok" : 1 }
+
+
+> db.Mobile_Shopping.insert({"M_id":101,"Model":"POCO M4","Brand":"MI","Color":"Blue","RAM":"6 GB","ROM":"128 GB","Price":12999})
+WriteResult({ "nInserted" : 1 })
+
+> db.Mobile_Shopping.insert({"M_id":102,"Model":"Redmi 10","Brand":"MI","Color":"Pacific Blue","RAM":"3 GB","ROM":"32 GB","Price":10890})
+WriteResult({ "nInserted" : 1 })
+
+> db.Mobile_Shopping.insert({"M_id":103,"Model":"SamsundF13","Brand":"Samsung","Color":"Nightsky Green","RAM":"4 GB","ROM":"64 GB","Price":10999})
+WriteResult({ "nInserted" : 1 })
+
+> db.Mobile_Shopping.insert({"M_id":104,"Model":"SamsundJ6","Brand":"Samsung","Color":"Gray","RAM":"4 GB","ROM":"128 GB","Price":14499})
+WriteResult({ "nInserted" : 1 })
+
+> db.Mobile_Shopping.insert({"M_id":105,"Model":"iphone 12","Brand":"Apple","Color":["pink","blue"],"RAM":"4 GB","ROM":"128 GB","Price":60900})
+WriteResult({ "nInserted" : 1 })
+
+> db.Mobile_Shopping.insert({"M_id":106,"Model":"iphone 13","Brand":"Apple","Color":["pink","blue"],"RAM":"5 GB","ROM":"128 GB","Price":74900})
+WriteResult({ "nInserted" : 1 })
+
+> db.Mobile_Shopping.insert({"M_id":107,"Model":"iphone 7","Brand":"Apple","Color":["Gray","blue"],"RAM":"5 G","ROM":"128 GB","Price":45900})
+WriteResult({ "nInserted" : 1 })
+
+> db.Mobile_Shopping.insert({"M_id":108,"Model":"KEYone","Brand":"BlakBerry","Color":"black","RAM":"8 GB","ROM":"128 GB","Price":25500})
+WriteResult({ "nInserted" : 1 })
+
+> db.Mobile_Shopping.insert({"M_id":109,"Model":"SamsundM33","Brand":"Samsung","Color":"Mystique Green","RAM":"6 GB","ROM":"128 GB","Price":20499})
+WriteResult({ "nInserted" : 1 })
+
+> db.Mobile_Shopping.insert({"M_id":110,"Model":"Z2","Brand":"IKALL","Color":"Dark Blue","RAM":"3 GB","ROM":"16 GB","Price":4749})
+WriteResult({ "nInserted" : 1 })
+
+> db.Mobile_Shopping.find().pretty();
+
+{
+        "_id" : ObjectId("63b0763601555f89784c2f4f"),
+        "M_id" : 101,
+        "Model" : "POCO M4",
+        "Brand" : "MI",
+        "Color" : "Blue",
+        "RAM" : "6 GB",
+        "ROM" : "128 GB",
+        "Price" : 12999
+}
+{
+        "_id" : ObjectId("63b0773401555f89784c2f50"),
+        "M_id" : 102,
+        "Model" : "Redmi 10",
+        "Brand" : "MI",
+        "Color" : "Pacific Blue",
+        "RAM" : "3 GB",
+        "ROM" : "32 GB",
+        "Price" : 10890
+}
+{
+        "_id" : ObjectId("63b077e301555f89784c2f51"),
+        "M_id" : 103,
+        "Model" : "SamsundF13",
+        "Brand" : "Samsung",
+        "Color" : "Nightsky Green",
+        "RAM" : "4 GB",
+        "ROM" : "64 GB",
+        "Price" : 10999
+}
+{
+        "_id" : ObjectId("63b0793c01555f89784c2f52"),
+        "M_id" : 104,
+        "Model" : "SamsundJ6",
+        "Brand" : "Samsung",
+        "Color" : "Gray",
+        "RAM" : "4 GB",
+        "ROM" : "128 GB",
+        "Price" : 14499
+}
+{
+        "_id" : ObjectId("63b142d401555f89784c2f59"),
+        "M_id" : 105,
+        "Model" : "iphone 12",
+        "Brand" : "Apple",
+        "Color" : [ "pink","blue"],
+        "RAM" : "4 GB",
+        "ROM" : "128 GB",
+        "Price" : 60900
+}
+{
+        "_id" : ObjectId("63b1430401555f89784c2f5a"),
+        "M_id" : 106,
+        "Model" : "iphone 13",
+        "Brand" : "Apple",
+        "Color" : ["pink","blue"],
+        "RAM" : "5 GB",
+        "ROM" : "128 GB",
+        "Price" : 74900
+}
+{
+        "_id" : ObjectId("63b1316701555f89784c2f55"),
+        "M_id" : 107,
+        "Model" : "iphone 7",
+        "Brand" : "Apple",
+        "Color" : [
+                "Gray",
+                "blue"
+        ],
+        "RAM" : "5 G",
+        "ROM" : "128 GB",
+        "Price" : 45900
+}
+{
+        "_id" : ObjectId("63b1327701555f89784c2f56"),
+        "M_id" : 108,
+        "Model" : "KEYone",
+        "Brand" : "BlakBerry",
+        "Color" : "black",
+        "RAM" : "8 GB",
+        "ROM" : "128 GB",
+        "Price" : 25500
+}
+{
+        "_id" : ObjectId("63b1337701555f89784c2f57"),
+        "M_id" : 109,
+        "Model" : "SamsundM33",
+        "Brand" : "Samsung",
+        "Color" : "Mystique Green",
+        "RAM" : "6 GB",
+        "ROM" : "128 GB",
+        "Price" : 20499
+}
+{
+        "_id" : ObjectId("63b1343f01555f89784c2f58"),
+        "M_id" : 110,
+        "Model" : "Z2",
+        "Brand" : "IKALL",
+        "Color" : "Dark Blue",
+        "RAM" : "3 GB",
+        "ROM" : "16 GB",
+        "Price" : 4749
+}
+
+> db.Customers.insert({"C_id":1100,"C_name":"Shweta","C_rating":3,"Model":"POCO M4","Brand":"MI","Color":"Blue","RAM":"6 GB","ROM":"128 GB","Price":12999})
+WriteResult({ "nInserted" : 1 })
+
+> db.Mobile_Shopping.insert({"_id":107,"Model":"iphone 7","Brand":"Apple","Color":["Gray","blue"],"RAM":"5 G","ROM":"128 GB","Price":45900})
+WriteResult({ "nInserted" : 1 })
+
+> db.Customers.insert({"C_id":1102,"C_name":"Maddy","Model":"iphone 7","Brand":"Apple","Color":["Gray","blue"],"RAM":"5 G","ROM":"128 GB","Price":45900})
+WriteResult({ "nInserted" : 1 })
+
+> db.Customers.insert({"C_id":1103,"C_name":"Vishal","C_rating":8,"Model":"iphone 7","Brand":"Apple","Color":["Gray","blue"],"RAM":"5 G","ROM":"128 GB","Price":45900})
+WriteResult({ "nInserted" : 1 })
+
+> db.Customers.insert({"C_id":1104,"C_name":"Vishal","C_rating":8,"Model":"SamsundJ6","Brand":"Samsung","Color":"Gray","RAM":"4 GB","ROM":"128 GB","Price":14499})
+WriteResult({ "nInserted" : 1 })
+
+> db.Customers.insert({"C_id":1105,"C_name":"Saurabh","C_rating":2,"Model":"Redmi 10","Brand":"MI","Color":"Pacific Blue","RAM":"3 GB","ROM":"32 GB","Price":10890})
+WriteResult({ "nInserted" : 1 })
+
+> db.Customers.insert({"C_id":1106,"C_name":"Raju","C_rating":8,"Model":"iphone 13","Brand":"Apple","Color":["pink","blue"],"RAM":"5 GB","ROM":"128 GB","Price":74900})
+WriteResult({ "nInserted" : 1 })
+
+> db.Customers.insert({"C_id":1107,"C_name":"Priyanka","C_rating":8,"Model":"iphone 7","Brand":"Apple","Color":["Gray","blue"],"RAM":"5 G","ROM":"128 GB","Price":45900})
+WriteResult({ "nInserted" : 1 })
+
+> db.Customers.insert({"C_id":1107,"C_name":"Priyanka","C_rating":6,"Model":"KEYone","Brand":"BlakBerry","Color":"black","RAM":"8 GB","ROM":"128 GB","Price":25500})
+WriteResult({ "nInserted" : 1 })
+
+> db.Customers.insert({"C_id":1108,"C_name":"Pooja","C_rating":5,"Model":"SamsundM33","Brand":"Samsung","Color":"Mystique Green","RAM":"6 GB","ROM":"128 GB","Price":20499})
+WriteResult({ "nInserted" : 1 })
+
+> db.Customers.insert({"C_id":1109,"C_name":"Chetan","C_rating":4,"Model":"Redmi 10","Brand":"MI","Color":"Pacific Blue","RAM":"3 GB","ROM":"32 GB","Price":10890})
+WriteResult({ "nInserted" : 1 })
+
+> db.Customers.find().pretty();
+{
+        "_id" : ObjectId("63b1491a01555f89784c2f5b"),
+        "C_id" : 1100,
+        "C_name" : "Shweta",
+        "C_rating" : 3,
+        "Model" : "POCO M4",
+        "Brand" : "MI",
+        "Color" : "Blue",
+        "RAM" : "6 GB",
+        "ROM" : "128 GB",
+        "Price" : 12999
+}
+{
+        "_id" : ObjectId("63b149e401555f89784c2f5c"),
+        "C_id" : 1102,
+        "C_name" : "Maddy",
+        "Model" : "iphone 7",
+        "Brand" : "Apple",
+        "Color" : [ "Gray","blue"],
+        "RAM" : "5 G",
+        "ROM" : "128 GB",
+        "Price" : 45900
+}
+{
+        "_id" : ObjectId("63b14a4901555f89784c2f5d"),
+        "C_id" : 1103,
+        "C_name" : "Vishal",
+        "C_rating" : 8,
+        "Model" : "iphone 7",
+        "Brand" : "Apple",
+        "Color" : [
+                "Gray",
+                "blue"
+        ],
+        "RAM" : "5 G",
+        "ROM" : "128 GB",
+        "Price" : 45900
+}
+{
+        "_id" : ObjectId("63b14aea01555f89784c2f5e"),
+        "C_id" : 1104,
+        "C_name" : "Vishal",
+        "C_rating" : 8,
+        "Model" : "SamsundJ6",
+        "Brand" : "Samsung",
+        "Color" : "Gray",
+        "RAM" : "4 GB",
+        "ROM" : "128 GB",
+        "Price" : 14499
+}
+{
+        "_id" : ObjectId("63b14b6501555f89784c2f5f"),
+        "C_id" : 1105,
+        "C_name" : "Saurabh",
+        "C_rating" : 2,
+        "Model" : "Redmi 10",
+        "Brand" : "MI",
+        "Color" : "Pacific Blue",
+        "RAM" : "3 GB",
+        "ROM" : "32 GB",
+        "Price" : 10890
+}
+{
+        "_id" : ObjectId("63b14b9401555f89784c2f60"),
+        "C_id" : 1106,
+        "C_name" : "Raju",
+        "C_rating" : 8,
+        "Model" : "iphone 13",
+        "Brand" : "Apple",
+        "Color" : [ "pink","blue"],
+        "RAM" : "5 GB",
+        "ROM" : "128 GB",
+        "Price" : 74900
+}
+{
+        "_id" : ObjectId("63b14bd901555f89784c2f61"),
+        "C_id" : 1107,
+        "C_name" : "Priyanka",
+        "C_rating" : 8,
+        "Model" : "iphone 7",
+        "Brand" : "Apple",
+        "Color" : [ "Gray","blue"],
+        "RAM" : "5 G",
+        "ROM" : "128 GB",
+        "Price" : 45900
+}
+{
+        "_id" : ObjectId("63b14c4801555f89784c2f62"),
+        "C_id" : 1107,
+        "C_name" : "Priyanka",
+        "C_rating" : 6,
+        "Model" : "KEYone",
+        "Brand" : "BlakBerry",
+        "Color" : "black",
+        "RAM" : "8 GB",
+        "ROM" : "128 GB",
+        "Price" : 25500
+}
+{
+        "_id" : ObjectId("63b14cb001555f89784c2f63"),
+        "C_id" : 1108,
+        "C_name" : "Pooja",
+        "C_rating" : 5,
+        "Model" : "SamsundM33",
+        "Brand" : "Samsung",
+        "Color" : "Mystique Green",
+        "RAM" : "6 GB",
+        "ROM" : "128 GB",
+        "Price" : 20499
+}
+{
+        "_id" : ObjectId("63b14cf301555f89784c2f64"),
+        "C_id" : 1109,
+        "C_name" : "Chetan",
+        "C_rating" : 4,
+        "Model" : "Redmi 10",
+        "Brand" : "MI",
+        "Color" : "Pacific Blue",
+        "RAM" : "3 GB",
+        "ROM" : "32 GB",
+        "Price" : 10890
+}
+
+
+Q1
+
+> db.Mobile_Shopping.find({$and:[{"RAM":"3 GB"},{"ROM":"32 GB"}]}).pretty();
+{
+        "_id" : ObjectId("63b0773401555f89784c2f50"),
+        "M_id" : 102,
+        "Model" : "Redmi 10",
+        "Brand" : "MI",
+        "Color" : "Pacific Blue",
+        "RAM" : "3 GB",
+        "ROM" : "32 GB",
+        "Price" : 10890
+}
+
+Q2
+
+> db.Customers.find({"Model" : "SamsundJ6"}).pretty();
+{
+        "_id" : ObjectId("63b14aea01555f89784c2f5e"),
+        "C_id" : 1104,
+        "C_name" : "Vishal",
+        "C_rating" : 8,
+        "Model" : "SamsundJ6",
+        "Brand" : "Samsung",
+        "Color" : "Gray",
+        "RAM" : "4 GB",
+        "ROM" : "128 GB",
+        "Price" : 1449b9
+}
+
+
+Q3
+
+> db.Customers.aggregate([{$match:{"C_rating":{$gt:6}}},{$group:{_id:"$Brand"}}])
+{ "_id" : "Apple" }
+{ "_id" : "Samsung" }
+
+Q4
+
+> db.Customers.find({"Model":"iphone 7"}).pretty().sort({"C_id":1});
+{
+        "_id" : ObjectId("63b149e401555f89784c2f5c"),
+        "C_id" : 1102,
+        "C_name" : "Maddy",
+        "Model" : "iphone 7",
+        "Brand" : "Apple",
+        "Color" : [
+                "Gray",
+                "blue"
+        ],
+        "RAM" : "5 G",
+        "ROM" : "128 GB",
+        "Price" : 45900
+}
+{
+        "_id" : ObjectId("63b14a4901555f89784c2f5d"),
+        "C_id" : 1103,
+        "C_name" : "Vishal",
+        "C_rating" : 8,
+        "Model" : "iphone 7",
+        "Brand" : "Apple",
+        "Color" : [
+                "Gray",
+                "blue"
+        ],
+        "RAM" : "5 G",
+        "ROM" : "128 GB",
+        "Price" : 45900
+}
+{
+        "_id" : ObjectId("63b14bd901555f89784c2f61"),
+        "C_id" : 1107,
+        "C_name" : "Priyanka",
+        "C_rating" : 8,
+        "Model" : "iphone 7",
+        "Brand" : "Apple",
+        "Color" : [
+                "Gray",
+                "blue"
+        ],
+        "RAM" : "5 G",
+        "ROM" : "128 GB",
+        "Price" : 45900
+}

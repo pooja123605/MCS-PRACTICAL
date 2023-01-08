@@ -1,0 +1,116 @@
+Write a program for multiplication of two matrices. Find determinant
+of resultant matrix.
+(Accept matrix: 5M Multiplication : 10M Determinant : 10M Display
+: 5M)
+ 
+
+SOLUTION:
+
+import scala.language.postfixOps // optional
+object mat_mult {
+ def main( args :Array[String]) {
+ print("\nEnter m & n of 1st matrix:\t")
+ val m1 = scala.io.StdIn.readInt()
+ val n1 = scala.io.StdIn.readInt()
+ print("\nEnter m & n of 2st matrix:\t")
+ val m2 = scala.io.StdIn.readInt()
+ val n2 = scala.io.StdIn.readInt() 
+ // Both must be 3x3 to find determinant
+ val mat1 = Array.ofDim[Int](m1,n1)
+ val mat2 = Array.ofDim[Int](m2,n2)
+ println("Enter Matrx 1:")
+ for(i<- 0 until m1) 
+ for( j<- 0 until n1)
+ mat1(i)(j) = scala.io.StdIn.readInt()
+ println("Enter Matrx 1:") 
+ for(i <- 0 until m2) 
+ for( j <-0 until n2)
+ mat2(i)(j) = scala.io.StdIn.readInt()
+ var res = Array.ofDim[Int](m1,n2)
+ for(i <- 0 until m1) {
+ for( j <- 0 until n2) {
+ for(k <-0 until m2) {
+res(i)(j) += mat1(i)(k)*mat2(k)(j) } } }
+ for(i <- 0 until m1) {
+ for( j <-0 until n2)
+ print(res(i)(j)+"\t")
+ print("\n")
+ }
+ val det = res(0)(0)*(res(1)(1)*res(2)(2) -res(2)(1)*res(1)(2)) + 
+res(0)(1)*(res(1)(0)*res(2)(2)-res(2)(0)*res(1)(2)) + res(2)(0)*(res(1)(2) * res(2)(1) - res(2)(0) * 
+res(1)(1))
+ println("Determinant:\t"+det)
+ }
+}
+
+
+Model the following Society relations among people working in “HCL”, as a graph model, and answer the queries using Cypher. 
+A person can be a friend of another person. A person may have siblings (brothers / sisters), 
+A person may be a parent(mother/father) of another person. A person stays either in Pune or Mumbai or Kolhapur. 
+A person may be working on either ‘Finance’ or ‘Inventory’ or ‘Sales’ projects.
+1.	Identify the labels and relationships, along with their properties, and draw a high-level Graph model. 
+2.	Create nodes and relationships, along with their properties, and visualize your actual Graph model. 
+3.	Answer the following Queries in Cypher:
+a.	List the names of people who are parents. 
+b.	List the names of people working on ‘Finance ‘project 
+c.	List the names of people staying in ‘Pune’ and ‘Mumbai’. 
+d.	List the names of people who are mothers. 
+
+CREATE(amit:Person{name:'Amit',city:'Pune'}) 
+CREATE(jaggu:Person{name:'Jaggu',city:'Mumbai'}) 
+CREATE(jagan:Person{name:'Jagan',city:'Kolhapur'}) 
+CREATE(vaishnavi:Person{name:'Vaishnavi',city:'Pune'}) 
+CREATE(vaibhavi:Person{name:'Vaibhavi',city:'Mumbai'}) 
+CREATE(radha:Person{name:'Radha',city:'Kolhapur'})
+
+CREATE(ajit:Parents:Person{name:'Ajit',city:'Pune'}) 
+CREATE(ajay:Parents:Person{name:'Ajay',city:'Mumbai'}) 
+CREATE(shweta:Parents:Person{name:'Shweta',city:'Kolhapur'}) 
+CREATE(anjali:Parents:Person{name:'Anjali',city:'Pune'})
+
+CREATE(finance:Project{Title:'Finance'}) 
+CREATE(inventory:Project{Title:'Inventory'}) 
+CREATE(sales:Project{Title:'Sales'})
+
+CREATE (amit)-[:friend_of]->(jaggu) 
+CREATE (amit)-[:friend_of]->(jagan) 
+CREATE (ajay)-[:friend_of]->(ajit) 
+CREATE (vaishnavi)-[:friend_of]->(radha) 
+CREATE (radha)-[:friend_of]->(vaibhavi)
+
+CREATE (amit)-[:brother_of]->(radha) 
+CREATE (vaibhavi)-[:sister_of]->(jaggu)
+ 
+CREATE (ajit)-[:father_of]->(amit) 
+CREATE (ajay)-[:father_of]->(jagan) 
+CREATE (shweta)-[:mother_of]->(amit) 
+CREATE (anjali)-[:mother_of]->(jaggu)
+
+CREATE (ajit)-[:working_in]->(finance) 
+CREATE (shweta)-[:working_in]->(finance)
+CREATE (jaggu)-[:working_in]->(inventory) 
+CREATE (vaibhavi)-[:working_in]->(inventory) 
+CREATE (jagan)-[:working_in]->(inventory)
+CREATE (amit)-[:working_in]->(sales) 
+CREATE (radha)-[:working_in]->(sales) 
+CREATE (vaishnavi)-[:working_in]->(sales)
+
+
+Solution for the queries
+
+a. List The names of People Who Are parents:person
+match (p:Parents:Person) 
+return p.name AS parents
+
+b. List The names of People Working on Finance project 
+match(p:Person)-[:working_in]->(:Project{Title:'Finance'}) 
+return p.name AS Finance_Employee
+
+c. List The names of People Staying in 'pune' and 'Mumbai'
+match(p:Person) where p.city IN ['Mumbai','Pune'] 
+return p.name AS People_staying_in_Pune_Mumbai
+
+d. List The names of People Who Are Mother
+match(m:Person)-[:mother_of]->(Person) 
+return m.name AS Mother_name
+Slip 1 neo4j

@@ -1,0 +1,354 @@
+Create a MAP for storing the following information about 5 students,
+where each Student is described with Rollno, Name and marks in
+two subjects. Display Student information with highest percentage.
+(create MAP : 10M select with highest logic: 10M display : 10M)
+
+SOLUTION:
+
+object map_student {
+ def main(args : Array[String]) {
+ val m = scala.collection.mutable.Map[String,Double]()
+ for(i <- 1 to 5) {
+ print("\nEnter Name:\t")
+ val n = scala.io.StdIn.readLine()
+ print("\n Enter Percentage:\t")
+ val per = scala.io.StdIn.readDouble()
+ m += (n->per)
+ }
+ var max = 0.0d
+ var name = ""
+ m.keys.foreach {
+ key=>
+ if(m(key) > max) {
+ name = key
+ max = m(key) 
+ }
+ }
+ print("\nName:\t"+name+"\nPer:\t"+m(name))
+ }
+ }
+
+
+Slip 20 Mongodb 
+1. Model the following Hospital information system as a document database. 
+Consider hospitals in and around Pune. Each hospital may have one or more 
+specializations like Pediatric, Gynaec, Orthopaedic, etc. A person can 
+recommend/provide review for a hospital. A doctor can be associated with 
+one or more hospitals. 2. Assume appropriate attributes and collections as per 
+the query requirements. [5] 3. Insert at least 10 documents in each collection. 
+[10].
+Ans:
+> use Hospital
+switched to db Hospital
+> db.createCollection("Hospital");
+{ "ok" : 1 }
+> db.createCollection("Doctor");
+{ "ok" : 1 }
+> db.createCollection("Person");
+{ "ok" : 1 }
+> db.Hospital.insert({ "Hid":101,"Hname":"Lokmanya","specialization":"Pediatric" });
+WriteResult({ "nInserted" : 1 })
+> db.Hospital.insert({ "Hid":102,"Hname":"Lokmanya","specialization":"Gynaec" });
+WriteResult({ "nInserted" : 1 })
+> db.Hospital.insert({ "Hid":103,"Hname":"Jahangir","specialization":"Gynaec" });
+WriteResult({ "nInserted" : 1 })
+> db.Hospital.insert({ "Hid":104,"Hname":"Jahangir","specialization":"Orthopaedic" 
+});
+WriteResult({ "nInserted" : 1 })
+> db.Hospital.insert({ "Hid":106,"Hname":"Phoenix","specialization":"Orthopaedic" 
+});
+WriteResult({ "nInserted" : 1 })
+> db.Hospital.insert({ "Hid":107,"Hname":"Ruby Hall","specialization":"Pediatric" });
+WriteResult({ "nInserted" : 1 })
+> db.Hospital.insert({ "Hid":108,"Hname":"Ruby Hall","specialization":"Pediatric" });
+WriteResult({ "nInserted" : 1 })
+> db.Hospital.insert({ "Hid":109,"Hname":"Phoenix","specialization":"Orthopaedic" 
+});
+WriteResult({ "nInserted" : 1 })
+> db.Hospital.insert({ "Hid":110,"Hname":"Jahangir","specialization":"Orthopaedic" 
+});
+WriteResult({ "nInserted" : 1 })
+> db.Hospital.find().pretty();
+{
+ "_id" : ObjectId("63b04bb55cfe021cd68707ca"),
+ "Hid" : 101,
+ "Hname" : "Lokmanya",
+ "specialization" : "Pediatric"
+}
+{
+ "_id" : ObjectId("63b04c1b5cfe021cd68707cb"),
+ "Hid" : 102,
+ "Hname" : "Lokmanya",
+ "specialization" : "Gynaec"
+}
+{
+ "_id" : ObjectId("63b04c6a5cfe021cd68707cc"),
+ "Hid" : 103,
+ "Hname" : "Jahangir",
+ "specialization" : "Gynaec"
+}
+{
+ "_id" : ObjectId("63b04c9f5cfe021cd68707cd"),
+ "Hid" : 104,
+ "Hname" : "Jahangir",
+ "specialization" : "Orthopaedic"
+}
+{
+ "_id" : ObjectId("63b04ced5cfe021cd68707ce"),
+ "Hid" : 106,
+ "Hname" : "Phoenix",
+ "specialization" : "Orthopaedic"
+}
+{
+ "_id" : ObjectId("63b04d115cfe021cd68707cf"),
+ "Hid" : 107,
+ "Hname" : "Ruby Hall",
+ "specialization" : "Pediatric"
+}
+{
+ "_id" : ObjectId("63b04d275cfe021cd68707d0"),
+ "Hid" : 108,
+ "Hname" : "Ruby Hall",
+ "specialization" : "Pediatric"
+}
+{
+ "_id" : ObjectId("63b04d325cfe021cd68707d1"),
+ "Hid" : 109,
+ "Hname" : "Phoenix",
+ "specialization" : "Orthopaedic"
+}
+{
+ "_id" : ObjectId("63b04d4c5cfe021cd68707d2"),
+ "Hid" : 110,
+ "Hname" : "Jahangir",
+ "specialization" : "Orthopaedic"
+}
+> db.Doctor.insert({ "Did":101, "dname":"Shweta", "d_sp":"Gynaec" 
+,"p_rec":"Jahangir","day":"Monday"});
+WriteResult({ "nInserted" : 1 })
+> db.Doctor.insert({ "Did":102, "dname":"Madhavi", "d_sp":"Pediatric" 
+,"p_rec":"Jahangir","day":"Tuseday"});
+WriteResult({ "nInserted" : 1 })
+> db.Doctor.insert({ "Did":103, "dname":"Swarali", "d_sp":"Pediatric" 
+,"p_rec":"Lokmanya","day":"Tuseday"});
+WriteResult({ "nInserted" : 1 })
+> db.Doctor.insert({ "Did":104, "dname":"Poonam", "d_sp":"Orthopaedic" 
+,"p_rec":"Lokmanya","day":"Friday"});
+WriteResult({ "nInserted" : 1 })
+> db.Doctor.insert({ "Did":105, "dname":"Priyanka", "d_sp":"Orthopaedic" 
+,"p_rec":"Sanjvini","day":"Friday"});
+WriteResult({ "nInserted" : 1 })
+> db.Doctor.insert({ "Did":106, "dname":"Priya", "d_sp":"Orthopaedic" 
+,"p_rec":"Sanjvini","day":"Monday"});
+WriteResult({ "nInserted" : 1 })
+> db.Doctor.insert({ "Did":107, "dname":"Priya", "d_sp":"Orthopaedic" 
+,"p_rec":"Sanjvini","day":"Thrusday"});
+WriteResult({ "nInserted" : 1 })
+> db.Doctor.insert({ "Did":108, "dname":"Ruchi", "d_sp":"Orthopaedic" 
+,"p_rec":"Radiant","day":"Thrusday"});
+WriteResult({ "nInserted" : 1 })
+> db.Doctor.insert({ "Did":109, "dname":"Ruchita", "d_sp":"Orthopaedic" 
+,"p_rec":"Radiant","day":"Thrusday"});
+WriteResult({ "nInserted" : 1 })
+//for display
+> db.Doctor.find().pretty();
+{
+ "_id" : ObjectId("63b102fc1ed0a09a8c056162"),
+ "Did" : 101,
+ "dname" : "Shweta",
+ "d_sp" : "Gynaec",
+ "p_rec" : "Jahangir",
+ "day" : "Monday"
+}
+{
+ "_id" : ObjectId("63b1033a1ed0a09a8c056163"),
+ "Did" : 102,
+ "dname" : "Madhavi",
+ "d_sp" : "Pediatric",
+ "p_rec" : "Jahangir",
+ "day" : "Tuseday"
+}
+{
+ "_id" : ObjectId("63b103541ed0a09a8c056164"),
+ "Did" : 103,
+ "dname" : "Swarali",
+ "d_sp" : "Pediatric",
+ "p_rec" : "Lokmanya",
+ "day" : "Tuseday"
+}
+{
+ "_id" : ObjectId("63b103ac1ed0a09a8c056165"),
+ "Did" : 104,
+ "dname" : "Poonam",
+ "d_sp" : "Orthopaedic",
+ "p_rec" : "Lokmanya",
+ "day" : "Friday"
+}
+{
+ "_id" : ObjectId("63b103c91ed0a09a8c056166"),
+ "Did" : 105,
+ "dname" : "Priyanka",
+ "d_sp" : "Orthopaedic",
+ "p_rec" : "Sanjvini",
+ "day" : "Friday"
+}
+{
+ "_id" : ObjectId("63b103de1ed0a09a8c056167"),
+ "Did" : 106,
+ "dname" : "Priya",
+ "d_sp" : "Orthopaedic",
+ "p_rec" : "Sanjvini",
+ "day" : "Monday"
+}
+{
+ "_id" : ObjectId("63b103f71ed0a09a8c056168"),
+ "Did" : 107,
+ "dname" : "Priya",
+ "d_sp" : "Orthopaedic",
+ "p_rec" : "Sanjvini",
+ "day" : "Thrusday"
+}
+{
+ "_id" : ObjectId("63b104241ed0a09a8c056169"),
+ "Did" : 108,
+ "dname" : "Ruchi",
+ "d_sp" : "Orthopaedic",
+ "p_rec" : "Radiant",
+ "day" : "Thrusday"
+}
+{
+ "_id" : ObjectId("63b104311ed0a09a8c05616a"),
+ "Did" : 109,
+ "dname" : "Ruchita",
+ "d_sp" : "Orthopaedic",
+ "p_rec" : "Radiant",
+ "day" : "Thrusday"
+}
+> db.Person.insert({ "pid":10, "pname":"Shweta","P_rec":"Lokmanya","P_rate":3 })
+WriteResult({ "nInserted" : 1 })
+> db.Person.insert({ "pid":11, "pname":"Shweta","P_rec":"Jehangir","P_rate":5 })
+WriteResult({ "nInserted" : 1 })
+> db.Person.insert({ "pid":12, "pname":"Madhavi","P_rec":"Jehangir","P_rate":4 })
+WriteResult({ "nInserted" : 1 })
+> db.Person.insert({ "pid":13, "pname":"Priya","P_rec":"Lokmanya","P_rate":6 })
+WriteResult({ "nInserted" : 1 })
+> db.Person.insert({ "pid":14, "pname":"Priyaka","P_rec":"Phoenix","P_rate":5 })
+WriteResult({ "nInserted" : 1 })
+> db.Person.insert({ "pid":15, "pname":"Priyaka","P_rec":"Phoenix","P_rate":5 })
+WriteResult({ "nInserted" : 1 })
+> db.Person.insert({ "pid":16, "pname":"Madhavi","P_rec":"Jehangir","P_rate":4 })
+WriteResult({ "nInserted" : 1 })
+> db.Person.insert({ "pid":17, "pname":"Poonam","P_rec":"Radient","P_rate":5 })
+WriteResult({ "nInserted" : 1 })
+> db.Person.insert({ "pid":18, "pname":"Poonam","P_rec":"Radient","P_rate":5 })
+WriteResult({ "nInserted" : 1 })
+> db.Person.insert({ "pid":19, "pname":"shivani","P_rec":"Radient","P_rate":2 })
+WriteResult({ "nInserted" : 1 })
+> db.Person.insert({ "pid":20, "pname":"Devayani","P_rec":"Lokmanya","P_rate":2 })
+WriteResult({ "nInserted" : 1 })
+> db.Person.find().pretty();
+{
+ "_id" : ObjectId("63b056e65cfe021cd68707dd"),
+ "pid" : 10,
+ "pname" : "Shweta",
+ "P_rec" : "Lokmanya",
+ "P_rate" : 3
+}
+{
+ "_id" : ObjectId("63b057035cfe021cd68707de"),
+ "pid" : 11,
+ "pname" : "Shweta",
+ "P_rec" : "Jehangir",
+ "P_rate" : 5
+}
+{
+ "_id" : ObjectId("63b0571a5cfe021cd68707df"),
+ "pid" : 12,
+ "pname" : "Madhavi",
+ "P_rec" : "Jehangir",
+ "P_rate" : 4
+}
+{
+ "_id" : ObjectId("63b057385cfe021cd68707e0"),
+ "pid" : 13,
+ "pname" : "Priya",
+ "P_rec" : "Lokmanya",
+ "P_rate" : 6
+}
+{
+ "_id" : ObjectId("63b057525cfe021cd68707e1"),
+ "pid" : 14,
+ "pname" : "Priyaka",
+ "P_rec" : "Phoenix",
+ "P_rate" : 5
+}
+{
+ "_id" : ObjectId("63b0575e5cfe021cd68707e2"),
+ "pid" : 15,
+ "pname" : "Priyaka",
+ "P_rec" : "Phoenix",
+ "P_rate" : 5
+}
+{
+ "_id" : ObjectId("63b0576a5cfe021cd68707e3"),
+ "pid" : 16,
+ "pname" : "Madhavi",
+ "P_rec" : "Jehangir",
+ "P_rate" : 4
+}
+{
+ "_id" : ObjectId("63b057aa5cfe021cd68707e4"),
+ "pid" : 17,
+ "pname" : "Poonam",
+ "P_rec" : "Radient",
+ "P_rate" : 5
+}
+{
+ "_id" : ObjectId("63b057b45cfe021cd68707e5"),
+ "pid" : 18,
+ "pname" : "Poonam",
+ "P_rec" : "Radient",
+ "P_rate" : 5
+}
+{
+ "_id" : ObjectId("63b057d15cfe021cd68707e6"),
+ "pid" : 19,
+ "pname" : "shivani",
+ "P_rec" : "Radient",
+ "P_rate" : 2
+}
+{
+ "_id" : ObjectId("63b057f25cfe021cd68707e7"),
+ "pid" : 20,
+ "pname" : "Devayani",
+ "P_rec" : "Lokmanya",
+ "P_rate" : 2
+}
+************************QUERY***************************
+1)List the names of hospitals with pediatric specialization.
+ANS:> db.Hospital.find( {"specialization":"Pediatric"}, {"Hname":1}).pretty();
+{ "_id" : ObjectId("63b04bb55cfe021cd68707ca"), "Hname" : "Lokmanya" }
+{ "_id" : ObjectId("63b04d115cfe021cd68707cf"), "Hname" : "Ruby Hall" }
+{ "_id" : ObjectId("63b04d275cfe021cd68707d0"), "Hname" : "Ruby Hall" }
+(2)List the Names of doctors who are visiting “Jehangir
+Hospital ” on Mondays.
+ANS:> > db.Doctor.find({$and:[{"p_rec":"Jahangir"} ,{"day":"Monday"}]}).pretty();
+{
+ "_id" : ObjectId("63b102fc1ed0a09a8c056162"),
+ "Did" : 101,
+ "dname" : "Shweta",
+ "d_sp" : "Gynaec",
+ "p_rec" : "Jahangir",
+ "day" : "Monday"
+}
+(4)List the names of people who have given a rating of
+(>=3) for “Jehangir Hospital”
+ANS:> db.Person.find( { "P_rate":{$gt:3}},{"pname":1}).pretty();
+{ "_id" : ObjectId("63b057035cfe021cd68707de"), "pname" : "Shweta" }
+{ "_id" : ObjectId("63b0571a5cfe021cd68707df"), "pname" : "Madhavi" }
+{ "_id" : ObjectId("63b057385cfe021cd68707e0"), "pname" : "Priya" }
+{ "_id" : ObjectId("63b057525cfe021cd68707e1"), "pname" : "Priyaka" }
+{ "_id" : ObjectId("63b0575e5cfe021cd68707e2"), "pname" : "Priyaka" }
+{ "_id" : ObjectId("63b0576a5cfe021cd68707e3"), "pname" : "Madhavi" }
+{ "_id" : ObjectId("63b057aa5cfe021cd68707e4"), "pname" : "Poonam" }
+{ "_id" : ObjectId("63b057b45cfe021cd68707e5"), "pname" : "Poonam" }

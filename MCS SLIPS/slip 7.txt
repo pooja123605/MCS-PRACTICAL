@@ -1,0 +1,112 @@
+Create lists using five different methods and display each of
+them.(List style, java style, fill, range, tabulate methods)
+(each method : 5 M display : 1M each)
+3
+
+SOLUTION:
+
+ object list {
+ def main(args:Array[String]) {
+ val l1 = 1::2::3::4::Nil // LISP style
+ println("\n\nLISP Style")
+ for(i <- l1 ) {
+ print(i+"\t")
+}
+println("\n\nJava Style")
+ val l2 = List(1,2,3,4) // Java Style 
+ for(i <- l2 ) {
+ print(i+"\t")
+ }
+ 
+ println("\n\nRange Method")
+ 
+ val l3 = List.range(5,10) // Range
+ for(i <- l3 ) {
+ print(i+"\t")
+ }
+ println("\n\nFill Method")
+ val l4 = List.fill(5)("Zural") // Fill
+ for(i <- l4 ) {
+ print(i+"\t")
+ }
+ println("\n\nTabulate Method")
+ val l5 = List.tabulate(3)(n=>n*n) // Tabulate
+for(i <- l5 ) {
+ print(i+"\t")
+ }
+ }
+ }
+
+
+Slip 7 neo4j 
+Model the following Hospitals information as a graph model, and answer the following queries using Cypher.
+Consider hospitals in and around Pune. Each hospital may have one or more specializations like Pediatric, Gynaec, Orthopedic, etc. 
+A person can recommend/provide review for a hospital. A doctor can be associated with one or more hospitals.
+1.	Identify the labels and relationships, along with their properties, and draw Graph model. 
+2.	Create nodes and relationships, along with their properties, and visualize your actual Graph model.
+3.	Answer the Queries
+a.	List the names of hospitals with pediatric specialization. 
+b.	List the Names of doctors who are visiting “Jehangir Hospital” on Mondays.
+c.	List	the	most	recommended	Hospital	for	Gynaec specialization.
+d.	List the names of people who have given a rating of (>=3) for “Jehangir Hospital”
+
+
+create(jehangir:Hospital{name:'Jehangir Hospital',specializations:['Pediatric', 'Gynaec', 'Orthopedic']})
+create(patil:Hospital{name:'Patil hospital',specializations:['Pediatric', 'Gynaec']}) 
+create(sanjivani:Hospital{name:'Sanjivani hospital',specializations:['Pediatric', 'Orthopedic']}) 
+create(astha:Hospital{name:'Astha hospital',specializations:['Gynaec', 'Orthopedic']}) 
+create(poona:Hospital{name:'Poona hospital',specializations:['Orthopedic']}) 
+create(rustam:Hospital{name:'Rustam hospital',specializations:['Gynaec']}) 
+create(saideep:Hospital{name:'Saideep hospital',specializations:['Pediatric', 'Gynaec', 'Orthopedic']})
+
+create(drrustam:Doctor{name:'Dr. Rustam'}) 
+create(drasthana:Doctor{name:'Dr. Asthana'}) 
+create(drkale:Doctor{name:'Dr. Kale'}) 
+create(drpawar:Doctor{name:'Dr. Pawar'}) 
+create(drram:Doctor{name:'Dr. Ram'}) 
+
+create(drrustam)-[:visit {Day:'Monday'}]->(jehangir) 
+create(drasthana)-[:visit {Day:'Tuesday'}]->(patil) 
+create(drkale)-[:visit {Day:'Wednesday'}]->(sanjivani) 
+create(drpawar)-[:visit {Day:'Thursday'}]->(astha) 
+create(drram)-[:visit {Day:'Friday'}]->(poona)
+create(drram)-[:visit {Day:'Monday'}]->(rustam)
+create(drkale)-[:visit {Day:'Tuesday'}]->(jehangir)
+
+ 
+create(ram:People{name:'Ram'}) 
+create(sham:People{name:'Sham'}) 
+create(raj:People{name:'Raj'}) 
+create(ravi:People{name:'Ravi'})
+
+
+create(ram)-[:recommend {specialization:'Pediatric',rating:4}]->(saideep) 
+create(ram)-[:recommend {specialization:'Orthopedic',rating:2}]->(poona) 
+create(raj)-[:recommend {specialization:'Gynaec',rating:5}]->(jehangir) 
+create(ravi)-[:recommend {specialization:'Gynaec',rating:5}]->(jehangir) 
+create(sham)-[:recommend {specialization:'Pediatric',rating:4}]->(jehangir) 
+create(sham)-[:recommend {specialization:'Gynaec',rating:5}]->(patil)
+
+
+Solution for the Queries
+
+a. List the names of hospitals with pediatric specialization.
+match (h:Hospital)
+where 'Pediatric' IN h.specializations 
+return h.name
+
+b. List the Names of doctors who are visiting “Jehangir Hospital” on Mondays. 
+match(d:Doctor)-[v:visit]->(h:Hospital)
+where v.Day='Monday' and h.name='Jehangir Hospital'
+return d.name
+
+c. List the most recommended Hospital for Gynaec specialization.
+match(p:People)-[r:recommend]->(h:Hospital)
+where r.specialization='Gynaec' 
+return h.name,count(*) 
+order by count(*) desc limit 1
+
+d. List the names of people who have given a rating of (>=3) for “Jehangir Hospital”
+match(p:People)-[r:recommend]->(h:Hospital)
+where r.rating>=3 and h.name='Jehangir Hospital'
+return p.name

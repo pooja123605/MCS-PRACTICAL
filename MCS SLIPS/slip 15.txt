@@ -1,0 +1,350 @@
+Define a class SavingAccount (accNo, name, balance, minBalance).
+Define appropriate constructors and operations withdraw(), deposit(),
+viewBalance(). Create an array of SavingAccount objects and
+perform operations and display them.
+(define class:5M constructors: 10M operations: 5 M each)
+
+SOLUTION:
+
+  Define a class SavingAccount (accNo, name, balance, minBalance).
+Define appropriate constructors and operations withdraw(), deposit(),
+viewBalance(). Create an array of SavingAccount objects and
+perform operations and display them.
+(define class:5M constructors: 10M operations: 5 M each)
+
+SOLUTION:
+
+ class SavingAccount(accNo:Int, name:String ,var bal:Int , minBal:Int) {
+ def withdraw(amt:Int) {
+ if(bal - amt < minBal || bal - amt < 0) {
+ println("\nInsufficiant Balance")
+ }
+ else 
+ bal -= amt
+ }
+ def deposit(amt:Int) = bal += amt
+ def viewBalance = print("\nAcc No: "+accNo+"\nBal: "+bal)
+ }
+ object SavingAcc {
+ def main(args:Array[String]) {
+var account = new Array[SavingAccount](5)
+ for(i <- 0 until 5) {
+ print("\nEnter Account Number:\t")
+ val accNo = scala.io.StdIn.readInt()
+ print("\nEnter Name:\t")
+ val name = scala.io.StdIn.readLine()
+ print("\nEnter Balance:\t")
+ val bal = scala.io.StdIn.readInt()
+ print("\nEnter Min Balance:\t")
+ val minBal = scala.io.StdIn.readInt()
+ account(i) = new SavingAccount(accNo , name , bal , minBal)
+ }
+ for(i<- 0 until 5) {
+ account(i).deposit(i*200)
+ account(i).viewBalance
+ account(i).withdraw(i*500)
+ account(i).viewBalance
+}
+}
+}
+
+Slip 15 Mongodb 
+C:\Program Files\MongoDB\Server\4.2\bin>maongo
+
+> use slip_15
+
+> db.createCollection("Olympic_Games")
+{ "ok" : 1 }
+> db.createCollection("Countries")
+{ "ok" : 1 }
+
+> db.Olympic_Games.insert({"year":2008,"G_name":"Badminton","Gender":"women's","age":"21 to 45"})
+WriteResult({ "nInserted" : 1 })
+
+>  db.Olympic_Games.insert({"year":2015,"G_name":"Shooting","Gender":"men's","age":"22 to 35"})
+WriteResult({ "nInserted" : 1 })
+
+>  db.Olympic_Games.insert({"year":2015,"G_name":"Shooting","Gender":"women's","age":"24 to 34"})
+WriteResult({ "nInserted" : 1 })
+
+> db.Olympic_Games.insert({"year":2008,"G_name":"Archery","Gender":"women's","age":"22 to 35"})
+WriteResult({ "nInserted" : 1 })
+
+> db.Olympic_Games.insert({"year":2008,"G_name":"Archery","Gender":"men's","age":"22 to 35"})
+WriteResult({ "nInserted" : 1 })
+
+>  db.Olympic_Games.insert({"year":2015,"G_name":"Swimming","Gender":"women's","age":"24 to 34"})
+WriteResult({ "nInserted" : 1 })
+
+> db.Olympic_Games.insert({"year":2008,"G_name":"Boxing","Gender":"men's","age":"24 to 55"})
+WriteResult({ "nInserted" : 1 })
+
+> db.Olympic_Games.insert({"year":2008,"G_name":"Boxing","Gender":"women's","age":"22 to 35"})
+WriteResult({ "nInserted" : 1 })
+
+>  db.Olympic_Games.insert({"year":2015,"G_name":"Swimming","Gender":"men's","age":"24 to 34"})
+WriteResult({ "nInserted" : 1 })
+
+> db.Olympic_Games.insert({"year":2008,"G_name":"Badminton","Gender":"men's","age":"24 to 55"})
+WriteResult({ "nInserted" : 1 })
+
+> db.Olympic_Games.find().pretty();
+{
+        "_id" : ObjectId("63ba676f4b9a686a83a5473d"),
+        "year" : 2008,
+        "G_name" : "Badminton",
+        "Gender" : "women's",
+        "age" : "21 to 45"
+}
+
+{
+        "_id" : ObjectId("63ba67bb4b9a686a83a5473f"),
+        "year" : 2015,
+        "G_name" : "Shooting",
+        "Gender" : "men's",
+        "age" : "22 to 35"
+}
+{
+        "_id" : ObjectId("63ba67dd4b9a686a83a54740"),
+        "year" : 2015,
+        "G_name" : "Shooting",
+        "Gender" : "women's",
+        "age" : "24 to 34"
+}
+{
+        "_id" : ObjectId("63ba68534b9a686a83a54741"),
+        "year" : 2008,
+        "G_name" : "Archery",
+        "Gender" : "women's",
+        "age" : "22 to 35"
+}
+{
+        "_id" : ObjectId("63ba68734b9a686a83a54742"),
+        "year" : 2008,
+        "G_name" : "Archery",
+        "Gender" : "men's",
+        "age" : "22 to 35"
+}
+{
+        "_id" : ObjectId("63ba68a04b9a686a83a54743"),
+        "year" : 2015,
+        "G_name" : "Swimming",
+        "Gender" : "women's",
+        "age" : "24 to 34"
+}
+{
+        "_id" : ObjectId("63ba68e24b9a686a83a54744"),
+        "year" : 2008,
+        "G_name" : "Boxing",
+        "Gender" : "men's",
+        "age" : "24 to 55"
+}
+{
+        "_id" : ObjectId("63ba69014b9a686a83a54745"),
+        "year" : 2008,
+        "G_name" : "Boxing",
+        "Gender" : "women's",
+        "age" : "22 to 35"
+}
+{
+        "_id" : ObjectId("63ba69394b9a686a83a54746"),
+        "year" : 2015,
+        "G_name" : "Swimming",
+        "Gender" : "men's",
+        "age" : "24 to 34"
+}
+{
+        "_id" : ObjectId("63ba69624b9a686a83a54747"),
+        "year" : 2008,
+        "G_name" : "Badminton",
+        "Gender" : "men's",
+        "age" : "24 to 55"
+}
+
+
+> db.Countries.insert({"c_name":"India","year":2008,"Total":10,"badminton":"Gold","Archery":"silver"})
+WriteResult({ "nInserted" : 1 })
+
+> db.Countries.insert({"c_name":"China","year":2015,"Total":25,"badminton":"silver","Archery":"silver"})
+WriteResult({ "nInserted" : 1 })
+
+> db.Countries.insert({"c_name":"Japan","year":2015,"Total":15,"Swimming":"Gold","badminton":"silver"})
+WriteResult({ "nInserted" : 1 })
+
+> db.Countries.insert({"c_name":"USA","year":2008,"Total":9,"Swimming":"Gold","badminton":"silver"})
+WriteResult({ "nInserted" : 1 })
+
+> db.Countries.insert({"c_name":"Nepal","year":2015,"Total":6,"Swimming":"silver","badminton":"silver"})
+WriteResult({ "nInserted" : 1 })
+
+> db.Countries.insert({"c_name":"Dubai","year":2015,"Total":4,"Swimming":"Gold","badminton":"silver"})
+WriteResult({ "nInserted" : 1 })
+
+> db.Countries.insert({"c_name":"Dubai","year":2008,"Total":12,"Swimming":"Gold","Shooting":"silver"})
+WriteResult({ "nInserted" : 1 })
+  
+> db.Countries.insert({"c_name":"India","year":2015,"Total":3,"Swimming":"Gold","Shooting":"silver"})
+WriteResult({ "nInserted" : 1 })
+
+> db.Countries.insert({"c_name":"Rassia","year":2015,"Total":12,"Swimming":"silver","Shooting":"silver"})
+WriteResult({ "nInserted" : 1 })
+
+> db.Countries.insert({"c_name":"Rassia","year":2008,"Total":12,"Swimming":"silver","Shooting":"silver"})
+WriteResult({ "nInserted" : 1 })
+
+> db.Countries.find().pretty();
+
+
+{
+        "_id" : ObjectId("63ba69fb4b9a686a83a54748"),
+        "c_name" : "India",
+        "year" : 2008,
+        "Total" : 10,
+        "badminton" : "Gold",
+        "Archery" : "silver"
+}
+{
+        "_id" : ObjectId("63ba6a1b4b9a686a83a54749"),
+        "c_name" : "China",
+        "year" : 2015,
+        "Total" : 25,
+        "badminton" : "silver",
+        "Archery" : "silver"
+}
+{
+        "_id" : ObjectId("63ba6a2d4b9a686a83a5474a"),
+        "c_name" : "Japan",
+        "year" : 2015,
+        "Total" : 15,
+        "Swimming" : "Gold",
+        "badminton" : "silver"
+}
+{
+        "_id" : ObjectId("63ba6a3b4b9a686a83a5474b"),
+        "c_name" : "USA",
+        "year" : 2008,
+        "Total" : 9,
+        "Swimming" : "Gold",
+        "badminton" : "silver"
+}
+{
+        "_id" : ObjectId("63ba6a614b9a686a83a5474c"),
+        "c_name" : "Nepal",
+        "year" : 2015,
+        "Total" : 6,
+        "Swimming" : "silver",
+        "badminton" : "silver"
+}
+{
+        "_id" : ObjectId("63ba6a7d4b9a686a83a5474d"),
+        "c_name" : "Dubai",
+        "year" : 2015,
+        "Total" : 4,
+        "Swimming" : "Gold",
+        "badminton" : "silver"
+}
+{
+        "_id" : ObjectId("63ba6aaa4b9a686a83a5474e"),
+        "c_name" : "Dubai",
+        "year" : 2008,
+        "Total" : 12,
+        "Swimming" : "Gold",
+        "Shooting" : "silver"
+}
+{
+        "_id" : ObjectId("63ba6abb4b9a686a83a5474f"),
+        "c_name" : "India",
+        "year" : 2015,
+        "Total" : 3,
+        "Swimming" : "Gold",
+        "Shooting" : "silver"
+}
+{
+        "_id" : ObjectId("63ba6ad04b9a686a83a54750"),
+        "c_name" : "Rassia",
+        "year" : 2015,
+        "Total" : 12,
+        "Swimming" : "silver",
+        "Shooting" : "silver"
+}
+{
+        "_id" : ObjectId("63ba6ade4b9a686a83a54751"),
+        "c_name" : "Rassia",
+        "year" : 2008,
+        "Total" : 12,
+        "Swimming" : "silver",
+        "Shooting" : "silver"
+}
+
+
+Q1)
+
+> db.Olympic_Games.find({"year":2008}).pretty();
+{
+        "_id" : ObjectId("63ba676f4b9a686a83a5473d"),
+        "year" : 2008,
+        "G_name" : "Badminton",
+        "Gender" : "women's",
+        "age" : "21 to 45"
+}
+{
+        "_id" : ObjectId("63ba68534b9a686a83a54741"),
+        "year" : 2008,
+        "G_name" : "Archery",
+        "Gender" : "women's",
+        "age" : "22 to 35"
+}
+{
+        "_id" : ObjectId("63ba68734b9a686a83a54742"),
+        "year" : 2008,
+        "G_name" : "Archery",
+        "Gender" : "men's",
+        "age" : "22 to 35"
+}
+{
+        "_id" : ObjectId("63ba68e24b9a686a83a54744"),
+        "year" : 2008,
+        "G_name" : "Boxing",
+        "Gender" : "men's",
+        "age" : "24 to 55"
+}
+{
+        "_id" : ObjectId("63ba69014b9a686a83a54745"),
+        "year" : 2008,
+        "G_name" : "Boxing",
+        "Gender" : "women's",
+        "age" : "22 to 35"
+}
+{
+        "_id" : ObjectId("63ba69624b9a686a83a54747"),
+        "year" : 2008,
+        "G_name" : "Badminton",
+        "Gender" : "men's",
+        "age" : "24 to 55"
+}
+
+Q2)
+
+> db.Countries.find({"year":2015},{"_id":0,"c_name":1}).pretty().sort({"c_name":1});
+{ "c_name" : "China" }
+{ "c_name" : "Dubai" }
+{ "c_name" : "India" }
+{ "c_name" : "Japan" }
+{ "c_name" : "Nepal" }
+{ "c_name" : "Rassia" }
+
+Q3)
+
+> db.Countries.find({"year":2015,"Total":{$gt:5}},{"_id":0,"c_name":1}).pretty();
+{ "c_name" : "China" }
+{ "c_name" : "Japan" }
+{ "c_name" : "Nepal" }
+{ "c_name" : "Rassia" }
+
+Q4)
+
+> db.Countries.find({"badminton":"silver","year":2015},{"_id":0,"c_name":1}).pretty();
+{ "c_name" : "China" }
+{ "c_name" : "Japan" }
+{ "c_name" : "Nepal" }
+{ "c_name" : "Dubai" }

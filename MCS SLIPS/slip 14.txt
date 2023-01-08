@@ -1,0 +1,379 @@
+Slip 14 Mongodb 
+C:\Program Files\MongoDB\Server\4.2\bin>mongo
+
+> use slip_14
+switched to db slip_14
+ 
+> db.createCollection("World_cup")
+{ "ok" : 1 }
+ 
+> db.createCollection("Players")
+{ "ok" : 1 }
+
+
+> db.World_cup.insert({"year":2018,"game":"Football","Events":["Asia_cup","Fifa","International","Commonwealth"],"age":"23 to 30"})
+WriteResult({ "nInserted" : 1 })
+
+> db.World_cup.insert({"year":2015,"game":"Football","Events":["Asia_cup","Fifa","International","Commonwealth"],"age":"23 to 30"})
+WriteResult({ "nInserted" : 1 })
+
+> db.World_cup.insert({"year":2012,"game":"Football","Events":["Fifa","International","Commonwealth"],"age":"23 to 30"})
+WriteResult({ "nInserted" : 1 })
+
+> db.World_cup.insert({"year":2018,"game":"Criket","Events":["T-20","1-day","Series","Test"],"age":"23 to 40"})
+WriteResult({ "nInserted" : 1 })
+
+> db.World_cup.insert({"year":2019,"game":"Criket","Events":["T-20","1-day","Series","Test"],"age":"23 to 40"})
+WriteResult({ "nInserted" : 1 })
+
+> db.World_cup.insert({"year":2015,"game":"Criket","Events":["1-day","Series","Test"],"age":"23 to 40"})
+WriteResult({ "nInserted" : 1 })
+
+> db.World_cup.insert({"year":2015,"game":"badminton","Events":["1-day","Test"],"age":"20 to 30"})
+WriteResult({ "nInserted" : 1 })
+
+> db.World_cup.insert({"year":2018,"game":"badminton","Events":["1-day","Test"],"age":"20 to 30"})
+WriteResult({ "nInserted" : 1 })
+
+> db.World_cup.insert({"year":2019,"game":"badminton","Events":["1-day","Test"],"age":"20 to 30"})
+WriteResult({ "nInserted" : 1 })
+
+> db.World_cup.find().pretty();
+{
+        "_id" : ObjectId("63ba93a19c3756941735e03b"),
+        "year" : 2018,
+        "game" : "Football",
+        "Events" : [
+                "Asia_cup",
+                "Fifa",
+                "International",
+                "Commonwealth"
+        ],
+        "age" : "23 to 30"
+}
+{
+        "_id" : ObjectId("63ba94209c3756941735e03c"),
+        "year" : 2015,
+        "game" : "Football",
+        "Events" : [
+                "Asia_cup",
+                "Fifa",
+                "International",
+                "Commonwealth"
+        ],
+        "age" : "23 to 30"
+}
+{
+        "_id" : ObjectId("63ba94559c3756941735e03d"),
+        "year" : 2012,
+        "game" : "Football",
+        "Events" : [
+                "Fifa",
+                "International",
+                "Commonwealth"
+        ],
+        "age" : "23 to 30"
+}
+{
+        "_id" : ObjectId("63ba95059c3756941735e03e"),
+        "year" : 2018,
+        "game" : "Criket",
+        "Events" : [
+                "T-20",
+                "1-day",
+                "Series",
+                "Test"
+        ],
+        "age" : "23 to 40"
+}
+{
+        "_id" : ObjectId("63ba950e9c3756941735e03f"),
+        "year" : 2019,
+        "game" : "Criket",
+        "Events" : [
+                "T-20",
+                "1-day",
+                "Series",
+                "Test"
+        ],
+        "age" : "23 to 40"
+}
+{
+        "_id" : ObjectId("63ba95329c3756941735e040"),
+        "year" : 2015,
+        "game" : "Criket",
+        "Events" : [
+                "1-day",
+                "Series",
+                "Test"
+        ],
+        "age" : "23 to 40"
+}
+{
+        "_id" : ObjectId("63ba95809c3756941735e041"),
+        "year" : 2015,
+        "game" : "badminton",
+        "Events" : [
+                "1-day",
+                "Test"
+        ],
+        "age" : "20 to 30"
+}
+{
+        "_id" : ObjectId("63ba958a9c3756941735e042"),
+        "year" : 2018,
+        "game" : "badminton",
+        "Events" : [
+                "1-day",
+                "Test"
+        ],
+        "age" : "20 to 30"
+}
+{
+        "_id" : ObjectId("63ba95939c3756941735e043"),
+        "year" : 2019,
+        "game" : "badminton",
+        "Events" : [
+                "1-day",
+                "Test"
+        ],
+        "age" : "20 to 30"
+}
+
+> db.Players.insert({"p_name":"Sachin","year":2019,"game":"Criket","Events":["T-20","1-day","Series","Test"],"age":37})
+WriteResult({ "nInserted" : 1 })
+
+> db.Players.insert({"p_name":"Dhoni","year":2019,"game":"Criket","Events":["T-20","1-day","Series","Test"],"age":35})
+WriteResult({ "nInserted" : 1 })
+
+> db.Players.insert({"p_name":"Saurabh","year":2019,"game":"Criket","Events":["T-20","1-day","Series","Test"],"age":28})
+WriteResult({ "nInserted" : 1 })
+
+> db.Players.insert({"p_name":"Sunil","year":2019,"game":"Criket","Events":["T-20","1-day","Series","Test"],"age":40})
+WriteResult({ "nInserted" : 1 })
+
+> db.Players.insert({"p_name":"Ronaldo","year":2012,"game":"Football","Events":["Fifa","International","Commonwealth"],"age":29})
+WriteResult({ "nInserted" : 1 })
+
+> db.Players.insert({"p_name":"Messi","year":2012,"game":"Football","Events":["Fifa","International","Commonwealth"],"age":27})
+WriteResult({ "nInserted" : 1 })
+
+> db.Players.insert({"p_name":"Saniya","year":2018,"game":"badminton","Events":["1-day","Test"],"age":22})
+WriteResult({ "nInserted" : 1 })
+
+> db.Players.insert({"p_name":"Rani","year":2019,"game":"badminton","Events":["1-day","Test"],"age":24})
+WriteResult({ "nInserted" : 1 })
+
+> db.Players.insert({"p_name":"Vishal","year":2015,"game":"Criket","Events":["1-day","Series","Test"],"age":23})
+WriteResult({ "nInserted" : 1 })
+
+> db.Players.insert({"p_name":"Anil","year":2018,"game":"Criket","Events":["T-20","1-day","Series","Test"],"age":22})
+WriteResult({ "nInserted" : 1 })
+
+> db.Players.find().pretty();
+{
+        "_id" : ObjectId("63ba974b9c3756941735e044"),
+        "p_name" : "Sachin",
+        "year" : 2019,
+        "game" : "Criket",
+        "Events" : [
+                "T-20",
+                "1-day",
+                "Series",
+                "Test"
+        ],
+        "age" : 37
+}
+{
+        "_id" : ObjectId("63ba97579c3756941735e045"),
+        "p_name" : "Dhoni",
+        "year" : 2019,
+        "game" : "Criket",
+        "Events" : [
+                "T-20",
+                "1-day",
+                "Series",
+                "Test"
+        ],
+        "age" : 35
+}
+{
+        "_id" : ObjectId("63ba97859c3756941735e046"),
+        "p_name" : "Saurabh",
+        "year" : 2019,
+        "game" : "Criket",
+        "Events" : [
+                "T-20",
+                "1-day",
+                "Series",
+                "Test"
+        ],
+        "age" : 28
+}
+{
+        "_id" : ObjectId("63ba97ae9c3756941735e047"),
+        "p_name" : "Sunil",
+        "year" : 2019,
+        "game" : "Criket",
+        "Events" : [
+                "T-20",
+                "1-day",
+                "Series",
+                "Test"
+        ],
+        "age" : 40
+}
+{
+        "_id" : ObjectId("63ba98059c3756941735e048"),
+        "p_name" : "Ronaldo",
+        "year" : 2012,
+        "game" : "Football",
+        "Events" : [
+                "Fifa",
+                "International",
+                "Commonwealth"
+        ],
+        "age" : 29
+}
+{
+        "_id" : ObjectId("63ba98479c3756941735e049"),
+        "p_name" : "Messi",
+        "year" : 2012,
+        "game" : "Football",
+        "Events" : [
+                "Fifa",
+                "International",
+                "Commonwealth"
+        ],
+        "age" : 27
+}
+{
+        "_id" : ObjectId("63ba98a29c3756941735e04a"),
+        "p_name" : "Saniya",
+        "year" : 2018,
+        "game" : "badminton",
+        "Events" : [
+                "1-day",
+                "Test"
+        ],
+        "age" : 22
+}
+{
+        "_id" : ObjectId("63ba98fb9c3756941735e04b"),
+        "p_name" : "Rani",
+        "year" : 2019,
+        "game" : "badminton",
+        "Events" : [
+                "1-day",
+                "Test"
+        ],
+        "age" : 24
+}
+{
+        "_id" : ObjectId("63ba99579c3756941735e04c"),
+        "p_name" : "Vishal",
+        "year" : 2015,
+        "game" : "Criket",
+        "Events" : [
+                "1-day",
+                "Series",
+                "Test"
+        ],
+        "age" : 23
+}
+{
+        "_id" : ObjectId("63ba99ca9c3756941735e04d"),
+        "p_name" : "Anil",
+        "year" : 2018,
+        "game" : "Criket",
+        "Events" : [
+                "T-20",
+                "1-day",
+                "Series",
+                "Test"
+        ],
+        "age" : 22
+}
+
+Q1)
+
+> db.World_cup.find({"year":2018}).pretty();
+{
+        "_id" : ObjectId("63ba93a19c3756941735e03b"),
+        "year" : 2018,
+        "game" : "Football",
+        "Events" : [
+                "Asia_cup",
+                "Fifa",
+                "International",
+                "Commonwealth"
+        ],
+        "age" : "23 to 30"
+}
+{
+        "_id" : ObjectId("63ba95059c3756941735e03e"),
+        "year" : 2018,
+        "game" : "Criket",
+        "Events" : [
+                "T-20",
+                "1-day",
+                "Series",
+                "Test"
+        ],
+        "age" : "23 to 40"
+}
+{
+        "_id" : ObjectId("63ba958a9c3756941735e042"),
+        "year" : 2018,
+        "game" : "badminton",
+        "Events" : [
+                "1-day",
+                "Test"
+        ],
+        "age" : "20 to 30"
+}
+Q2)
+> db.Players.find({"age":{$gt:23}},{"_id":0,"p_name":1}).pretty();
+{ "p_name" : "Sachin" }
+{ "p_name" : "Dhoni" }
+{ "p_name" : "Saurabh" }
+{ "p_name" : "Sunil" }
+{ "p_name" : "Ronaldo" }
+{ "p_name" : "Messi" }
+{ "p_name" : "Rani" }
+> db.World_cup.find({"year":2015,"game":"Football"},{"Events":1}).pretty();
+{
+        "_id" : ObjectId("63ba94209c3756941735e03c"),
+        "Events" : [
+                "Asia_cup",
+                "Fifa",
+                "International",
+                "Commonwealth"
+        ]
+}
+> db.World_cup.find({"year":2015,"game":"Football"},{"_id":0,"Events":1}).pretty();
+{
+        "Events" : [
+                "Asia_cup",
+                "Fifa",
+                "International",
+                "Commonwealth"
+        ]
+}
+
+Q3)
+
+> db.Players.find({"year":2019},{"_id":0,"p_name":1}).pretty();
+{ "p_name" : "Sachin" }
+{ "p_name" : "Dhoni" }
+{ "p_name" : "Saurabh" }
+{ "p_name" : "Sunil" }
+{ "p_name" : "Rani" }
+
+Q4)
+
+> db.Players.find({"year":2019,"game":"Criket"},{"_id":0,"p_name":1}).pretty();
+{ "p_name" : "Sachin" }
+{ "p_name" : "Dhoni" }
+{ "p_name" : "Saurabh" }
+{ "p_name" : "Sunil" }

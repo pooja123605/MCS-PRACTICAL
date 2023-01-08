@@ -1,0 +1,88 @@
+Write a program to create a MAP with empno, empname and deptname.
+Print details of all employees working in the same department, as “Mr.
+Joshi” .
+(create MAP : 10M logic: 10M print :5M)
+
+SOLUTION:
+class Employee(var ename:String,var dept:String)
+{
+def display(){
+println("---------------------------");
+println("Name:"+ename);
+println("Department Name:"+dept)
+}
+}
+object Slip1{
+def main(args:Array[String]){
+val e1=new Employee("Vishnu","finance");
+val e2=new Employee("Sumit","finance");
+val e3= new Employee("Paresh","Marketing");
+val e4 =new Employee("Tushar","Marketing");
+var e5=new Employee("Akshay","Marketing");
+var m1:Map[Int,Employee]=Map(1->e1,2->e2,3->e3,4->e4,5->e5);
+for((k,v)<-m1){
+if(v.dept.equalsIgnoreCase("marketing"))v.display()}}}
+
+
+Slip 5 neo4j
+Model the following Clothing Brand information as a graph model, and answer the following queries using Cypher.
+Consider a Mall for clothing. This mall will include different sections for males, females and kids. 
+Each section contains different types of apparels from different brands. There are many apparels with different designs, of each type. 
+An apparel may be available in one or more standard sizes (S/M/L/XL/XXL). Sales staff is assigned for each section.
+1.	Identify the labels and relationships, along with their properties, and draw Graph model. 
+2.	Create nodes and relationships, along with their properties, and visualize your actual Graph model. 
+3.	Answer the queries
+a.	List the different apparels type in female section. 
+b.	List the names of sales staff in ‘kids’ section. 
+c.	List the standard sizes available for shirts in male section. 
+d.	List the brand having least number of apparels under it. 
+
+
+create(kids:Section {name:'KIDS',sales_staff: ['ajay','ram','ramesh']})
+create(male:Section {name:'MALE',sales_staff: ['vijay','raghav','vinit']})
+create(female:Section {name:'FEMALE',sales_staff: ['punam','vaishnavi','muskan']})
+
+create(dress:Apparels{name:'Dress'})
+create(frock:Apparels{name:'Frock'})
+create(shirt:Apparels{name:'Shirt'})
+create(jeans:Apparels{name:'Jeans'})
+create(kurti:Apparels{name:'Kurti'})
+create(legging:Apparels{name:'Legging'})
+
+create(nike:Brand{name:'NIKE'}) 
+create(adidas:Brand{name:'ADIDAS'}) 
+
+create(kids)-[:contains {size:['M','S']}]->(dress) 
+create(kids)-[:contains {size:['M','S']}]->(frock) 
+create(male)-[:contains {size:['L','XL','XXL']}]->(shirt) 
+create(male)-[:contains {size:['L','XL','XXL']}]->(jeans) 
+create(female)-[:contains {size:['L','XL','XXL']}]->(kurti)
+create(female)-[:contains {size:['L','XL','XXL']}]->(legging)
+create(female)-[:contains {size:['L','XL']}]->(shirt) 
+create(female)-[:contains {size:['L','XL']}]->(jeans) 
+
+create(shirt)-[:provided_by]->(adidas) 
+create(jeans)-[:provided_by]->(adidas) 
+create(dress)-[:provided_by]->(nike) 
+create(frock)-[:provided_by]->(nike) 
+create(kurti)-[:provided_by]->(nike)
+create(legging)-[:provided_by]->(nike)
+ 
+Solution for the queries
+
+a. List the different apparels type in female section.
+match(s:Section{name:'FEMALE'})-[:contains]->(a:Apparels) 
+return a.name
+
+b. List the names of sales staff in ‘kids’ section
+match(s:Section {name:'KIDS'}) 
+return s.sales_staff
+
+c. List the standard sizes available for shirts in male section.
+match(s:Section{name:'MALE'})-[c:contains]->(a:Apparels{name:'Shirt'}) 
+return c.size
+
+d. List the brand having least number of apparels under it.
+match(a:Apparels)-[:provided_by]->(b:Brand)
+return b.name,count(*) 
+order by count(*) limit 1

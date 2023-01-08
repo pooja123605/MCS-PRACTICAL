@@ -1,0 +1,584 @@
+Create a list of 10 random numbers. Create another list from members
+of first list using function 3n2+4n+6. Display second list in ascending
+order.
+(random numbers list: 10M create list with function: 10M display
+with ascending order : 10M)
+
+SOLUTION 
+
+object random_list 
+{
+ def main(args:Array[String])
+ {
+ var random = new scala.util.Random
+ 
+ var list1 = List.fill(10)(random.nextInt(1001))
+ var list2 = scala.collection.mutable.ListBuffer[Int]()
+ for(i <- list1) 
+{
+ list2 += (3*i*i)+(4*i)+6
+}
+ list2 = list2.sorted
+ list2.foreach(println)
+ }
+ }
+
+Slip 19 Mongodb 
+> use Cosmetics
+switched to db Cosmetics
+> db.createCollection("Cosmetic_industry")
+{ "ok" : 1 }
+> db.createCollection("Product")
+{ "ok" : 1 }
+> db.createCollection("Customer")
+{ "ok" : 1 }
+> db.Cosmetic_industry.insert({"id":1,"brand":"Lakme","product":["Lipstick","Eye_linear","Eye_shadow"]})
+WriteResult({ "nInserted" : 1 })
+> db.Cosmetic_industry.insert({"id":2,"brand":"Mac","product":["Lipstick","Eye_linear","Eye_shadow"]})
+WriteResult({ "nInserted" : 1 })
+> db.Cosmetic_industry.insert({"id":3,"brand":"Maybelline","product":["Lipstick","Eye_linear","Eye_shadow"]})
+WriteResult({ "nInserted" : 1 })
+> db.Cosmetic_industry.insert({"id":4,"brand":"Loreal","product":["Lipstick","Eye_linear","Eye_shadow"]})
+WriteResult({ "nInserted" : 1 })
+> db.Cosmetic_industry.insert({"id":5,"brand":"Lotus","product":["Lipstick","Eye_linear","Eye_shadow","Face wash"]})
+WriteResult({ "nInserted" : 1 })
+> db.Cosmetic_industry.insert({"id":5,"brand":"Nivea","product":["Lipstick","Eye_linear","Eye_shadow","Face wash"]})
+WriteResult({ "nInserted" : 1 })
+> db.Cosmetic_industry.insert({"id":7,"brand":"Olay","product":["Lipstick","Eye_linear","Eye_shadow","Face wash"]})
+WriteResult({ "nInserted" : 1 })
+> db.Cosmetic_industry.insert({"id":8,"brand":"Chanel","product":["Lipstick","Eye_linear","Eye_shadow","Face wash"]})
+WriteResult({ "nInserted" : 1 })
+> db.Cosmetic_industry.insert({"id":9,"brand":"Avon","product":["Lipstick","Eye_linear","Eye_shadow","Face wash"]})
+WriteResult({ "nInserted" : 1 })
+> db.Cosmetic_industry.insert({"id":110,"brand":"Revlon","product":["Lipstick","Eye_linear","Eye_shadow","Face wash"]})
+WriteResult({ "nInserted" : 1 })
+> db.Cosmetic_industry.find().pretty();
+{
+        "_id" : ObjectId("63ba686468d017ac48122023"),
+        "id" : 1,
+        "brand" : "Lakme",
+        "product" : [
+                "Lipstick",
+                "Eye_linear",
+                "Eye_shadow"
+        ]
+}
+{
+        "_id" : ObjectId("63ba687a68d017ac48122024"),
+        "id" : 2,
+        "brand" : "Mac",
+        "product" : [
+                "Lipstick",
+                "Eye_linear",
+                "Eye_shadow"
+        ]
+}
+{
+        "_id" : ObjectId("63ba689b68d017ac48122025"),
+        "id" : 3,
+        "brand" : "Maybelline",
+        "product" : [
+                "Lipstick",
+                "Eye_linear",
+                "Eye_shadow"
+        ]
+}
+{
+        "_id" : ObjectId("63ba68c268d017ac48122026"),
+        "id" : 4,
+        "brand" : "Loreal",
+        "product" : [
+                "Lipstick",
+                "Eye_linear",
+                "Eye_shadow"
+        ]
+}
+{
+        "_id" : ObjectId("63ba693c68d017ac48122027"),
+        "id" : 5,
+        "brand" : "Lotus",
+        "product" : [
+                "Lipstick",
+                "Eye_linear",
+                "Eye_shadow",
+                "Face wash"
+        ]
+}
+{
+        "_id" : ObjectId("63ba698668d017ac48122028"),
+        "id" : 5,
+        "brand" : "Nivea",
+        "product" : [
+                "Lipstick",
+                "Eye_linear",
+                "Eye_shadow",
+                "Face wash"
+        ]
+}
+{
+        "_id" : ObjectId("63ba69b068d017ac48122029"),
+        "id" : 7,
+        "brand" : "Olay",
+        "product" : [
+                "Lipstick",
+                "Eye_linear",
+                "Eye_shadow",
+                "Face wash"
+        ]
+}
+{
+        "_id" : ObjectId("63ba69c468d017ac4812202a"),
+        "id" : 8,
+        "brand" : "Chanel",
+        "product" : [
+                "Lipstick",
+                "Eye_linear",
+                "Eye_shadow",
+                "Face wash"
+        ]
+}
+{
+        "_id" : ObjectId("63ba69e168d017ac4812202b"),
+        "id" : 9,
+        "brand" : "Avon",
+        "product" : [
+                "Lipstick",
+                "Eye_linear",
+                "Eye_shadow",
+                "Face wash"
+        ]
+}
+{
+        "_id" : ObjectId("63ba6a0f68d017ac4812202c"),
+        "id" : 110,
+        "brand" : "Revlon",
+        "product" : [
+                "Lipstick",
+                "Eye_linear",
+                "Eye_shadow",
+                "Face wash"
+        ]
+}
+> db.Product.insert({"pid":1,"pname":"Lipstick","brand":"Lakme","Date":"30-11-2019","cost":3000})
+WriteResult({ "nInserted" : 1 })
+> db.Product.insert({"pid":2,"pname":"Eye_linear","brand":"Mac","Date":"30-11-2020","cost":4000})
+WriteResult({ "nInserted" : 1 })
+> db.Product.insert({"pid":3,"pname":"Eye_Shadow","brand":"Maybelline","Date":"30-12-2021","cost":5000})
+WriteResult({ "nInserted" : 1 })
+> db.Product.insert({"pid":4,"pname":"Eye_Shadow","brand":"Avon","Date":"13-12-2021","cost":5000})
+WriteResult({ "nInserted" : 1 })
+> db.Product.insert({"pid":5,"pname":"face_wash","brand":"Revlon","Date":"14-05-2021","cost":500})
+WriteResult({ "nInserted" : 1 })
+> db.Product.insert({"pid":6,"pname":"face_wash","brand":"Chanel","Date":"14-05-2021","cost":6000})
+WriteResult({ "nInserted" : 1 })
+> db.Product.insert({"pid":7,"pname":"face_wash","brand":"Chanel","Date":"14-05-2021","cost":6000})
+WriteResult({ "nInserted" : 1 })
+> db.Product.insert({"pid":8,"pname":"face_wash","brand":"olay","Date":"14-05-2022","cost":7000})
+WriteResult({ "nInserted" : 1 })
+> db.Product.insert({"pid":9,"pname":"face_wash","brand":"olay","Date":"14-05-2022","cost":7000})
+WriteResult({ "nInserted" : 1 })
+> db.Product.insert({"pid":110,"pname":"Kajal","brand":"olay","Date":"14-05-2020","cost":7000})
+WriteResult({ "nInserted" : 1 })
+> db.Product.find().pretty();
+{
+        "_id" : ObjectId("63ba6b5068d017ac4812202d"),
+        "pid" : 1,
+        "pname" : "Lipstick",
+        "brand" : "Lakme",
+        "Date" : "30-11-2019",
+        "cost" : 3000
+}
+{
+        "_id" : ObjectId("63ba6ba568d017ac4812202e"),
+        "pid" : 2,
+        "pname" : "Eye_linear",
+        "brand" : "Mac",
+        "Date" : "30-11-2020",
+        "cost" : 4000
+}
+{
+        "_id" : ObjectId("63ba6bea68d017ac4812202f"),
+        "pid" : 3,
+        "pname" : "Eye_Shadow",
+        "brand" : "Maybelline",
+        "Date" : "30-12-2021",
+        "cost" : 5000
+}
+{
+        "_id" : ObjectId("63ba6c2f68d017ac48122030"),
+        "pid" : 4,
+        "pname" : "Eye_Shadow",
+        "brand" : "Avon",
+        "Date" : "13-12-2021",
+        "cost" : 5000
+}
+{
+        "_id" : ObjectId("63ba6c6a68d017ac48122031"),
+        "pid" : 5,
+        "pname" : "face_wash",
+        "brand" : "Revlon",
+        "Date" : "14-05-2021",
+        "cost" : 500
+}
+{
+        "_id" : ObjectId("63ba6cb368d017ac48122032"),
+        "pid" : 6,
+        "pname" : "face_wash",
+        "brand" : "Chanel",
+        "Date" : "14-05-2021",
+        "cost" : 6000
+}
+{
+        "_id" : ObjectId("63ba6cbd68d017ac48122033"),
+        "pid" : 7,
+        "pname" : "face_wash",
+        "brand" : "Chanel",
+        "Date" : "14-05-2021",
+        "cost" : 6000
+}
+{
+        "_id" : ObjectId("63ba6ce768d017ac48122034"),
+        "pid" : 8,
+        "pname" : "face_wash",
+        "brand" : "olay",
+        "Date" : "14-05-2022",
+        "cost" : 7000
+}
+{
+        "_id" : ObjectId("63ba6cf168d017ac48122035"),
+        "pid" : 9,
+        "pname" : "face_wash",
+        "brand" : "olay",
+        "Date" : "14-05-2022",
+        "cost" : 7000
+}
+{
+        "_id" : ObjectId("63ba6d3068d017ac48122036"),
+        "pid" : 110,
+        "pname" : "Kajal",
+        "brand" : "olay",
+        "Date" : "14-05-2020",
+        "cost" : 7000
+}
+> db.Customer.insert({"cid":1,"cname":"Shweta","P_Use":[{"pid":1,"brand":"Lakme","pname":"Lipstick","rate":4},{"pid":2,"brand":"Maybelline","pname":"Nail_Paint","rate":4}] })
+WriteResult({ "nInserted" : 1 })
+> db.Customer.insert({"cid":2,"cname":"Priyanka","P_Use":[{"pid":3,"brand":"Mac","pname":"Lipstick","rate":3},{"pid":4,"brand":"Lakme","pname":"Nail_Paint","rate":3}] })
+WriteResult({ "nInserted" : 1 })
+> db.Customer.insert({"cid":3,"cname":"Priya","P_Use":[{"pid":5,"brand":"Mac","pname":"Lipstick","rate":2},{"pid":6,"brand":"Lakme","pname":"Nail_Paint","rate":3}] })
+WriteResult({ "nInserted" : 1 })
+> db.Customer.insert({"cid":4,"cname":"Saniya","P_Use":[{"pid":6,"brand":"Mac","pname":"Face Wash","rate":2},{"pid":8,"brand":"Avon","pname":"Nail_Paint","rate":3}] })
+WriteResult({ "nInserted" : 1 })
+> db.Customer.insert({"cid":5,"cname":"Saniya","P_Use":[{"pid":6,"brand":"Mac","pname":"Face Wash","rate":2},{"pid":8,"brand":"Avon","pname":"Nail_Paint","rate":3}] })
+WriteResult({ "nInserted" : 1 })
+> db.Customer.insert({"cid":6,"cname":"Saniya","P_Use":[{"pid":101,"brand":"Olay","pname":"Face Wash","rate":2},{"pid":8,"brand":"Avon","pname":"Nail_Paint","rate":3}] })
+WriteResult({ "nInserted" : 1 })
+> db.Customer.insert({"cid":7,"cname":"Saniya","P_Use":[{"pid":101,"brand":"Olay","pname":"kajal","rate":5},{"pid":8,"brand":"Avon","pname":"Nail_Paint","rate":6}] })
+WriteResult({ "nInserted" : 1 })
+> db.Customer.insert({"cid":8,"cname":"Saniya","P_Use":[{"pid":101,"brand":"Olay","pname":"kajal","rate":5},{"pid":8,"brand":"Avon","pname":"Nail_Paint","rate":6}] })
+WriteResult({ "nInserted" : 1 })
+> db.Customer.insert({"cid":9,"cname":"rekha","P_Use":[{"pid":101,"brand":"Revlon","pname":"kajal","rate":5},{"pid":8,"brand":"Avon","pname":"Nail_Paint","rate":4}] })
+WriteResult({ "nInserted" : 1 })
+> db.Customer.insert({"cid":110,"cname":"poonam","P_Use":[{"pid":101,"brand":"Revlon","pname":"kajal","rate":5},{"pid":8,"brand":"Avon","pname":"Nail_Paint","rate":4}] })
+WriteResult({ "nInserted" : 1 })
+> db.Customer.find().pretty();
+{
+        "_id" : ObjectId("63ba709e68d017ac48122037"),
+        "cid" : 1,
+        "cname" : "Shweta",
+        "P_Use" : [
+                {
+                        "pid" : 1,
+                        "brand" : "Lakme",
+                        "pname" : "Lipstick",
+                        "rate" : 4
+                },
+                {
+                        "pid" : 2,
+                        "brand" : "Maybelline",
+                        "pname" : "Nail_Paint",
+                        "rate" : 4
+                }
+        ]
+}
+{
+        "_id" : ObjectId("63ba710268d017ac48122038"),
+        "cid" : 2,
+        "cname" : "Priyanka",
+        "P_Use" : [
+                {
+                        "pid" : 3,
+                        "brand" : "Mac",
+                        "pname" : "Lipstick",
+                        "rate" : 3
+                },
+                {
+                        "pid" : 4,
+                        "brand" : "Lakme",
+                        "pname" : "Nail_Paint",
+                        "rate" : 3
+                }
+        ]
+}
+{
+        "_id" : ObjectId("63ba712868d017ac48122039"),
+        "cid" : 3,
+        "cname" : "Priya",
+        "P_Use" : [
+                {
+                        "pid" : 5,
+                        "brand" : "Mac",
+                        "pname" : "Lipstick",
+                        "rate" : 2
+                },
+                {
+                        "pid" : 6,
+                        "brand" : "Lakme",
+                        "pname" : "Nail_Paint",
+                        "rate" : 3
+                }
+        ]
+}
+{
+        "_id" : ObjectId("63ba71b068d017ac4812203a"),
+        "cid" : 4,
+        "cname" : "Saniya",
+        "P_Use" : [
+                {
+                        "pid" : 6,
+                        "brand" : "Mac",
+                        "pname" : "Face Wash",
+                        "rate" : 2
+                },
+                {
+                        "pid" : 8,
+                        "brand" : "Avon",
+                        "pname" : "Nail_Paint",
+                        "rate" : 3
+                }
+        ]
+}
+{
+        "_id" : ObjectId("63ba71ba68d017ac4812203b"),
+        "cid" : 5,
+        "cname" : "Saniya",
+        "P_Use" : [
+                {
+                        "pid" : 6,
+                        "brand" : "Mac",
+                        "pname" : "Face Wash",
+                        "rate" : 2
+                },
+                {
+                        "pid" : 8,
+                        "brand" : "Avon",
+                        "pname" : "Nail_Paint",
+                        "rate" : 3
+                }
+        ]
+}
+{
+        "_id" : ObjectId("63ba71f568d017ac4812203c"),
+        "cid" : 6,
+        "cname" : "Saniya",
+        "P_Use" : [
+                {
+                        "pid" : 101,
+                        "brand" : "Olay",
+                        "pname" : "Face Wash",
+                        "rate" : 2
+                },
+                {
+                        "pid" : 8,
+                        "brand" : "Avon",
+                        "pname" : "Nail_Paint",
+                        "rate" : 3
+                }
+        ]
+}
+{
+        "_id" : ObjectId("63ba721668d017ac4812203d"),
+        "cid" : 7,
+        "cname" : "Saniya",
+        "P_Use" : [
+                {
+                        "pid" : 101,
+                        "brand" : "Olay",
+                        "pname" : "kajal",
+                        "rate" : 5
+                },
+                {
+                        "pid" : 8,
+                        "brand" : "Avon",
+                        "pname" : "Nail_Paint",
+                        "rate" : 6
+                }
+        ]
+}
+{
+        "_id" : ObjectId("63ba722368d017ac4812203e"),
+        "cid" : 8,
+        "cname" : "Saniya",
+        "P_Use" : [
+                {
+                        "pid" : 101,
+                        "brand" : "Olay",
+                        "pname" : "kajal",
+                        "rate" : 5
+                },
+                {
+                        "pid" : 8,
+                        "brand" : "Avon",
+                        "pname" : "Nail_Paint",
+                        "rate" : 6
+                }
+        ]
+}
+{
+        "_id" : ObjectId("63ba725368d017ac4812203f"),
+        "cid" : 9,
+        "cname" : "rekha",
+        "P_Use" : [
+                {
+                        "pid" : 101,
+                        "brand" : "Revlon",
+                        "pname" : "kajal",
+                        "rate" : 5
+                },
+                {
+                        "pid" : 8,
+                        "brand" : "Avon",
+                        "pname" : "Nail_Paint",
+                        "rate" : 4
+                }
+        ]
+}
+{
+        "_id" : ObjectId("63ba726d68d017ac48122040"),
+        "cid" : 110,
+        "cname" : "poonam",
+        "P_Use" : [
+                {
+                        "pid" : 101,
+                        "brand" : "Revlon",
+                        "pname" : "kajal",
+                        "rate" : 5
+                },
+                {
+                        "pid" : 8,
+                        "brand" : "Avon",
+                        "pname" : "Nail_Paint",
+                        "rate" : 4
+                }
+        ]
+}
+*******************************QUERY***************************************
+1)a. Display the products with the expiry date 30-11-2019.
+> db.Product.find({"Date":"30-11-2019"},{"pname":1}).pretty();
+{ "_id" : ObjectId("63ba6b5068d017ac4812202d"), "pname" : "Lipstick" }
+
+2)List the products having rating (>3) along with the brand
+name.
+> db.Customer.find({"P_Use.rate":{$gt:3}},{"P_Use.pname":1,"P_Use.brand":1}).pretty();
+{
+        "_id" : ObjectId("63ba709e68d017ac48122037"),
+        "P_Use" : [
+                {
+                        "brand" : "Lakme",
+                        "pname" : "Lipstick"
+                },
+                {
+                        "brand" : "Maybelline",
+                        "pname" : "Nail_Paint"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("63ba721668d017ac4812203d"),
+        "P_Use" : [
+                {
+                        "brand" : "Olay",
+                        "pname" : "kajal"
+                },
+                {
+                        "brand" : "Avon",
+                        "pname" : "Nail_Paint"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("63ba722368d017ac4812203e"),
+        "P_Use" : [
+                {
+                        "brand" : "Olay",
+                        "pname" : "kajal"
+                },
+                {
+                        "brand" : "Avon",
+                        "pname" : "Nail_Paint"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("63ba725368d017ac4812203f"),
+        "P_Use" : [
+                {
+                        "brand" : "Revlon",
+                        "pname" : "kajal"
+                },
+                {
+                        "brand" : "Avon",
+                        "pname" : "Nail_Paint"
+                }
+        ]
+}
+{
+        "_id" : ObjectId("63ba726d68d017ac48122040"),
+        "P_Use" : [
+                {
+                        "brand" : "Revlon",
+                        "pname" : "kajal"
+                },
+                {
+                        "brand" : "Avon",
+                        "pname" : "Nail_Paint"
+                }
+        ]
+}
+
+
+3)List the customers who bought Lakme Lipstick and
+Maybelline Nail Paint. 
+> db.Customer.find({$and:[{"P_Use.brand":"Lakme","P_Use.pname":"Lipstick"},{"P_Use.brand":"Maybelline","P_Use.pname":"Nail_Paint"}]}).pretty();
+{
+        "_id" : ObjectId("63ba709e68d017ac48122037"),
+        "cid" : 1,
+        "cname" : "Shweta",
+        "P_Use" : [
+                {
+                        "pid" : 1,
+                        "brand" : "Lakme",
+                        "pname" : "Lipstick",
+                        "rate" : 4
+                },
+                {
+                        "pid" : 2,
+                        "brand" : "Maybelline",
+                        "pname" : "Nail_Paint",
+                        "rate" : 4
+                }
+        ]
+}
+
+
+4)List the brands and the products for that brand. 
+> db.Cosmetic_industry.find({},{"brand":1,"Product":1}).pretty();
+{ "_id" : ObjectId("63ba686468d017ac48122023"), "brand" : "Lakme" }
+{ "_id" : ObjectId("63ba687a68d017ac48122024"), "brand" : "Mac" }
+{ "_id" : ObjectId("63ba689b68d017ac48122025"), "brand" : "Maybelline" }
+{ "_id" : ObjectId("63ba68c268d017ac48122026"), "brand" : "Loreal" }
+{ "_id" : ObjectId("63ba693c68d017ac48122027"), "brand" : "Lotus" }
+{ "_id" : ObjectId("63ba698668d017ac48122028"), "brand" : "Nivea" }
+{ "_id" : ObjectId("63ba69b068d017ac48122029"), "brand" : "Olay" }
+{ "_id" : ObjectId("63ba69c468d017ac4812202a"), "brand" : "Chanel" }
+{ "_id" : ObjectId("63ba69e168d017ac4812202b"), "brand" : "Avon" }
+{ "_id" : ObjectId("63ba6a0f68d017ac4812202c"), "brand" : "Revlon" }

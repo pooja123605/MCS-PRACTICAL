@@ -1,0 +1,119 @@
+Write a program to read two strings. Find the occurrence of second
+string in the first string. Reverse the case of each occurrence in the
+string and display resultant string.
+(read : 5M find occurance:10M reverse : 10M display: 5M)
+
+SOLUTION:
+
+object occur {
+ def main(args : Array[String]) { 
+ println("Enter 1st string")
+ var s1 = scala.io.StdIn.readLine()
+ println("Enter 2st string")
+ var s2 = scala.io.StdIn.readLine()
+ if(s1.contains(s2)) {
+ var s3 = s1.replaceAll(s2,"0")
+ println("Count:\t"+s3.filter(_=='0').length())
+ var s4 = ""
+ if(s2.charAt(0) >= 'a' && s2.charAt(0) <='z') {
+ s4 = s2.toUpperCase }
+ if(s2.charAt(0) >= 'A' && s2.charAt(0) <='Z') {
+ s4 = s2.toLowerCase } 
+ println(s1.replaceAll(s2,s4)) }
+ else {
+ println("No Occurance")
+}
+}
+}
+
+
+Slip 2 neo4j
+Model the following Dairy Brand information as a graph model, and answer the following queries using Cypher. 
+There are various dairy brands like Amul, Go, Britannia, Gokul etc. Their popularity varies across different states in India. 
+The popularity is measured as %, with a high popularity defined as >=90%, Medium Popularity between 50 to 90%, and Low popularity <50%. 
+Each brand manufactures various types of Dairy products like milk, butter, cheese, curd etc. 
+The milk product can be categorized into low fat/medium fat or high fat content type.
+
+1.	Identify the labels and relationships, along with their properties, and draw a high-level Graph model. 
+2.	Create nodes and relationships, along with their properties, and visualize your actual Graph model. 
+3.	Answer the following queries using Cypher:
+a.	List the names of different brands considered in your graph. 
+b.	List the brands that are highly popular in Maharashtra. 
+c.	List the popular cheese brands in Gujarat. 
+d.	List the brands manufacturing “low” fat content milk. 
+
+create(amul:Brand{name:'Amul',product:['Milk','Butter','Cheese','Curd']})
+create(go:Brand{name:'Go',product:['Milk','Butter','Cheese']}) 
+create(brita:Brand{name:'Britannia',product:['Milk','Curd']}) 
+create(gokul:Brand{name:'Gokul',product:['Milk','Butter','Cheese','Curd']})
+
+create(milk:Product{ptype:'Milk'}) 
+create(butter:Product{ptype:'Butter'}) 
+create(cheese:Product{ptype:'Cheese'})
+create(curd:Product{ptype:'Curd'})
+
+create(mah:State{name:'Maharashtra'}) 
+create(gujarat:State{name:'Gujarat'}) 
+create(karna:State{name:'Karnataka'}) 
+create(punjab:State{name:'Punjab'})
+
+create(amul)-[:manufactures {type:'Low Fat'}]->(milk)
+create(amul)-[:manufactures]->(butter)
+create(amul)-[:manufactures]->(cheese)
+create(amul)-[:manufactures]->(curd)
+
+create(go)-[:manufactures {type:'Medium Fat'}]->(milk)
+create(go)-[:manufactures]->(butter)
+create(go)-[:manufactures]->(cheese)
+
+create(brita)-[:manufactures {type:'Low Fat'}]->(milk)
+create(brita)-[:manufactures]->(curd)
+
+create(gokul)-[:manufactures {type:'High Fat'}]->(milk)
+create(gokul)-[:manufactures]->(butter)
+create(gokul)-[:manufactures]->(cheese)
+create(gokul)-[:manufactures]->(curd)
+
+create(amul)-[:popular_in{percent:95}]->(mah) 
+create(go)-[:popular_in{percent:70}]->(mah) 
+create(brita)-[:popular_in{percent:80}]->(mah) 
+create(gokul)-[:popular_in{percent:95}]->(mah)
+
+create(amul)-[:popular_in{percent:98}]->(gujarat) 
+create(go)-[:popular_in{percent:90}]->(gujarat) 
+create(brita)-[:popular_in{percent:50}]->(gujarat) 
+create(gokul)-[:popular_in{percent:40}]->(gujarat)
+
+create(amul)-[:popular_in{percent:80}]->(punjab) 
+create(brita)-[:popular_in{percent:60}]->(punjab) 
+
+create(go)-[:popular_in{percent:80}]->(karna) 
+create(amul)-[:popular_in{percent:80}]->(karna)
+
+create(cheese)-[:popular_in{Brand:'Amul', percent:90}]->(gujarat) 
+create(cheese)-[:popular_in{Brand:'Go', percent:80}]->(gujarat) 
+create(cheese)-[:popular_in{Brand:'Gokul', percent:70}]->(gujarat)
+
+create(cheese)-[:popular_in{Brand:'Amul',percent:70}]->(mah) 
+create(curd)-[:popular_in{Brand:'Britania',percent:80}]->(punjab) 
+create(butter)-[:popular_in{Brand:'Go',percent:90}]->(karna)
+
+Solution for the Queries
+
+a. List the names of different brands considered in your graph.
+match(b:Brand) 
+return b.name as Brands
+
+b. List the brands that are highly popular in Maharashtra.
+match(b:Brand)-[p:popular_in]->(s:State{name:'Maharashtra'}) 
+where p.percent>=90 
+return b.name as popular_brands_in_maharashtra
+
+c. List the popular cheese brands in Gujarat.
+match(pr:Product{ptype:'Cheese'})-[p:popular_in]->(s:State{name:'Gujarat'}) 
+return p.Brand,p.percent 
+order by p.percent desc limit 1
+
+d. List the brands manufacturing “low” fat content milk.
+match(b:Brand)-[:manufactures{type:'Low Fat'}]->(p:Product {ptype:'Milk'})
+return b.name

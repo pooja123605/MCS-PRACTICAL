@@ -1,0 +1,63 @@
+Write a program to sort a matrix using insertion sort and check if the
+resultant matrix is upper triangular or not.
+(accept : 5M sorting : 10M check unpper triangular:10M display: 5M)
+
+SOLUTION 
+
+object mat_multt
+ {
+ def main(args:Array[String])
+ {
+ print("\nEnter m & n of 1st matrix:\t")
+ val m1 = scala.io.StdIn.readInt()
+ val n1 = scala.io.StdIn.readInt()
+ print("\nEnter m & n of 2st matrix:\t")
+ val m2 = scala.io.StdIn.readInt()
+ val n2 = scala.io.StdIn.readInt()
+ val mat1 = Array.ofDim[Int](m1,n1)
+ val mat2 = Array.ofDim[Int](m2,n2)
+ if(n1==m2)
+ { 
+ println("Enter Matrx 1:")
+ for(i<- 0 until m1) 
+ for( j<- 0 until n1)
+ mat1(i)(j) = scala.io.StdIn.readInt()
+ println("Enter Matrx 1:") 
+ for(i <- 0 until m2) 
+ for( j <-0 until n2)
+ mat2(i)(j) = scala.io.StdIn.readInt()
+ var res = Array.ofDim[Int](m1,n2)
+ for(i <- 0 until m1) 
+{
+ for( j <- 0 until n2)
+ {
+ for(k <-0 until m2) 
+{
+res(i)(j) += mat1(i)(k)*mat2(k)(j) 
+} 
+} 
+}
+ var f = 1
+ for(i <- 0 until m1) 
+{
+ for( j <- 0 until n2)
+ {
+ if(j>i && i!=j && res(i)(j) != 0)
+ {
+ f = 0
+ }
+ }
+ } 
+if(f == 1) {
+ println("It is Upper Triangular") 
+}
+ else 
+ {
+ println("It is Not Upper Triangular") }
+ }
+ else
+ {
+ println("Enter Valid Dimesions")
+}
+ }
+ }

@@ -1,0 +1,171 @@
+Slip 12 Mongodb
+ use slip12
+switched to db slip12
+> db.createCollection("College")
+{ "ok" : 1 }
+> db.createCollection("Professors")
+{ "ok" : 1 }
+
+> db.College.insert({"c_name":"camp","add":"nigdi","cource":["Arts","Science","Commerce"],"Aff_p_count":3})
+WriteResult({ "nInserted" : 1 })
+
+> db.College.insert({"c_name":"D_patil","add":"Chinchwad","cource":["Arts","Science","Commerce","manegment","Engineering"],"Aff_p_count":5})
+WriteResult({ "nInserted" : 1 })
+ 
+> db.College.insert({"c_name":"RadheSham","add":"chikhli","cource":["Arts","Science","Commerce","manegment","Engineering"],"Aff_p_count":6})
+WriteResult({ "nInserted" : 1 })
+ 
+> db.College.insert({"c_name":"Symbiosis","add":"Talegaon","cource":["Arts","Science","Commerce","manegment","Engineering"],"Aff_p_count":2})
+WriteResult({ "nInserted" : 1 })
+ 
+> db.College.insert({"c_name":"JSPM","add":"Thathawade","cource":["Engineering"],"Aff_p_count":2})
+WriteResult({ "nInserted" : 1 })
+
+
+> db.College.find().pretty();
+{
+        "_id" : ObjectId("63b95855b1639f4a32bc21bb"),
+        "c_name" : "camp",
+        "add" : "nigdi",
+        "cource" : [
+                "Arts",
+                "Science",
+                "Commerce"
+        ],
+        "Aff_p_count" : 3
+}
+{
+        "_id" : ObjectId("63b958d5b1639f4a32bc21bc"),
+        "c_name" : "D_patil",
+        "add" : "Chinchwad",
+        "cource" : [
+                "Arts",
+                "Science",
+                "Commerce",
+                "manegment",
+                "Engineering"
+        ],
+        "Aff_p_count" : 5
+}
+{
+        "_id" : ObjectId("63b959b8b1639f4a32bc21bd"),
+        "c_name" : "RadheSham",
+        "add" : "chikhli",
+        "cource" : [
+                "Arts",
+                "Science",
+                "Commerce",
+                "manegment",
+                "Engineering"
+        ],
+        "Aff_p_count" : 6
+}
+{
+        "_id" : ObjectId("63b95a3ab1639f4a32bc21be"),
+        "c_name" : "Symbiosis",
+        "add" : "Talegaon",
+        "cource" : [
+                "Arts",
+                "Science",
+                "Commerce",
+                "manegment",
+                "Engineering"
+        ],
+        "Aff_p_count" : 2
+}
+{
+        "_id" : ObjectId("63b95b59b1639f4a32bc21bf"),
+        "c_name" : "JSPM",
+        "add" : "Thathawade",
+        "cource" : [
+                "Engineering"
+        ],
+        "Aff_p_count" : 2
+}
+
+
+> db.Professors.insert({"pname":"Manu Sing","age":40,"c_name":"JSPM","add":"chinchwad","cource":"Engineering","Salary":60000})
+WriteResult({ "nInserted" : 1 })
+
+> db.Professors.insert({"pname":"Rajesh Patil","age":43,"c_name":"camp","add":"Nigdi","cource":"Arts","Salary":60000})
+WriteResult({ "nInserted" : 1 })
+
+> db.Professors.insert({"pname":"Gayatri Patil","age":35,"c_name":"RadheSham","add":"Nigdi","cource":"Science","Salary":40000})
+WriteResult({ "nInserted" : 1 })
+
+> db.Professors.insert({"pname":"Saurabh Sharma","age":50,"c_name":"Symbiosis","add":"Nigdi","cource":"Science","Salary":25000})
+WriteResult({ "nInserted" : 1 })
+
+> db.Professors.insert({"pname":"Trupti Sharma","age":48,"c_name":"Symbiosis","add":"Nigdi","cource":"Manegment","Salary":65000})
+WriteResult({ "nInserted" : 1 })
+
+> db.Professors.find().pretty();
+{
+        "_id" : ObjectId("63b95e12b1639f4a32bc21c0"),
+        "pname" : "Manu Sing",
+        "age" : 40,
+        "c_name" : "JSPM",
+        "add" : "chinchwad",
+        "cource" : "Engineering",
+        "Salary" : 60000
+}
+{
+        "_id" : ObjectId("63b96057b1639f4a32bc21c1"),
+        "pname" : "Rajesh Patil",
+        "age" : 43,
+        "c_name" : "camp",
+        "add" : "Nigdi",
+        "cource" : "Arts",
+        "Salary" : 60000
+}
+{
+        "_id" : ObjectId("63b960eeb1639f4a32bc21c2"),
+        "pname" : "Gayatri Patil",
+        "age" : 35,
+        "c_name" : "RadheSham",
+        "add" : "Nigdi",
+        "cource" : "Science",
+        "Salary" : 40000
+}
+{
+        "_id" : ObjectId("63b96185b1639f4a32bc21c3"),
+        "pname" : "Saurabh Sharma",
+        "age" : 50,
+        "c_name" : "Symbiosis",
+        "add" : "Nigdi",
+        "cource" : "Science",
+        "Salary" : 25000
+}
+{
+        "_id" : ObjectId("63b961c7b1639f4a32bc21c4"),
+        "pname" : "Trupti Sharma",
+        "age" : 48,
+        "c_name" : "Symbiosis",
+        "add" : "Nigdi",
+        "cource" : "Manegment",
+        "Salary" : 65000
+}
+
+
+
+Q1)
+
+> db.College.find({"cource":"Arts"},{"c_name":1}).pretty();
+{ "_id" : ObjectId("63b95855b1639f4a32bc21bb"), "c_name" : "camp" }
+{ "_id" : ObjectId("63b958d5b1639f4a32bc21bc"), "c_name" : "D_patil" }
+{ "_id" : ObjectId("63b959b8b1639f4a32bc21bd"), "c_name" : "RadheSham" }
+{ "_id" : ObjectId("63b95a3ab1639f4a32bc21be"), "c_name" : "Symbiosis" }
+
+Q2)
+
+>  db.Professors.aggregate([{$match:{"age":{$gt:40}}},{$group:{_id:"$pname"}}]);
+{ "_id" : "Saurabh Sharma" }
+{ "_id" : "Rajesh Patil" }
+{ "_id" : "Trupti Sharma" }
+
+
+Q3)
+
+> db.College.find({"Aff_p_count":{$gt:4}},{_id:0,"c_name":1});
+{ "c_name" : "D_patil" }
+{ "c_name" : "RadheSham" }

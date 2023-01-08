@@ -1,0 +1,122 @@
+Write a program to calculate transpose of a matrix and check if the
+resultant matrix is lower triangular or not.
+(accept : 5 M transpose : 10M check lower triangular:10M display:5M)
+
+SOLUTION:
+
+ object transpose 
+{
+ def main(args:Array[String]) 
+{
+ println("Enter Matrix")
+ var mat = Array.ofDim[Int](3,3)
+ var tran = Array.ofDim[Int](3,3)
+ for(i <- 0 until 3) 
+{
+ for(j <- 0 until 3) 
+{ 
+ mat(i)(j) = scala.io.StdIn.readInt()
+ } 
+} 
+ for(i <- 0 until 3) 
+{
+ for(j <- 0 until 3) 
+{ 
+ tran(j)(i) = mat(i)(j)
+ } 
+} 
+var flag = 0 for(i <- 0 until 3) 
+{
+ for(j <- 0 until 3)
+ { 
+ if(i != j && i < j)
+ {
+ if(tran(i)(j) != 0)
+ {
+ flag = 1 
+}
+} 
+} 
+}
+ for(i <- 0 until 3) 
+{
+ for(j <- 0 until 3) 
+{ 
+ print(tran(i)(j)+"\t")
+ }
+ print("\n")
+ }
+ if(flag == 0) 
+{ 
+println("It is Lower Triangular") 
+} 
+else 
+{ 
+println("It is Lower 
+Triangular")
+ }
+ } 
+ }
+
+
+Slip 9 neo4j 
+Model the following Automobile information system as a graph model, and answer the following queries using Cypher.
+Consider an Automobile industry manufacturing different types of vehicles like Heavy Vehicles, Light Vehicles, etc. A customer can buy one or more types of vehicle. A person can recommend or rate a vehicle type.
+1.	Identify the labels and relationships, along with their properties, and draw Graph model. 
+2.	Create nodes and relationships, along with their properties, and visualize your actual Graph model.
+3.	Answer the Queries
+	a.	List the characteristics of heavy vehicle types. 
+	b.	List the name of customers who bought a light vehicle. 
+	c.	List the customers who bought more than one type of vehicle. 
+	d.	List the most recommended vehicle type.
+
+
+
+CREATE(heavy:vehicle {type:'Heavy Vehicle',characteristics:['weighted vehicle','more than four tyres','high cc']})
+CREATE(light:vehicle {type:'Light Vehicle',characteristics:['light weight vehicle','four tyres vehicle','low cc']})
+
+
+CREATE(soyab:Customer {Name:'BEIG SOYAB'})
+CREATE(ajaz:Customer {Name:'BEIG AJAZ'})
+CREATE(salman:Customer {Name:'KHAN SALMAN'})
+CREATE(ram:Customer {Name:'JADHAV RAM'})
+CREATE(amit:Customer {Name:'SHAH AMIT'})
+
+
+CREATE(soyab)-[:Recommends]->(light)
+CREATE(ajaz)-[:Recommends]->(heavy)
+CREATE(salman)-[:Recommends]->(light)
+CREATE(ram)-[:Recommends]->(heavy)
+CREATE(amit)-[:Recommends]->(light)
+
+
+CREATE(soyab)-[:Bought]->(light)
+CREATE(ajaz)-[:Bought]->(heavy)
+CREATE(salman)-[:Bought]->(light)
+CREATE(ram)-[:Bought]->(heavy)
+CREATE(amit)-[:Bought]->(light)
+CREATE(soyab)-[:Bought]->(heavy)
+CREATE(ajaz)-[:Bought]->(light)
+CREATE(salman)-[:Bought]->(heavy)
+
+Solution for the queries
+
+a.List the characteristics of heavy vehicle types.
+match(v1:vehicle{type:"Heavy Vehicle"})
+return v1.characteristics
+
+
+b.List the name of customers who bought a light vehicle. 
+match(c1:Customer)-[:Bought]->(v1:vehicle{type:"Light Vehicle" })
+return c1.Name
+
+c.List the customers who bought more than one type of vehicle.
+match(c1:Customer)-[:Bought]->(v1:vehicle{type:"Light Vehicle" }),(c2:Customer)-[:Bought]->(v2:vehicle{type:"Heavy Vehicle" })
+where c1.Name=c2.Name 
+return c1.Name
+
+
+d.List the most recommended vehicle type.
+match(c1:Customer)-[:Recommends]->(v1:vehicle) return v1.type,count(*)
+order by count(*)desc
+limit 1

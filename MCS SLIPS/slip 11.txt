@@ -1,0 +1,248 @@
+Design an abstract class Employee with computeSal() as an abstract
+function. Create two subclasses Worker and Manager. Salary of worker
+should be calculated on hourly basis of work and Salary of Manager
+should be calculated on monthly basis with additional incentives.
+Create five objects each of Worker and Manager class, and display their
+details.
+(abstract class and function :10M subclasses:5M salary calculation: 5 M
+each display:5M
+
+SOLUTION:
+
+abstract class Employee {
+ def computeSal
+ }
+ class Worker(name:String,work:Int) extends Employee{
+ var sal = 0
+ def computeSal {
+ sal = work*200
+ }
+ def disp = print("\nName:\t"+name+" Sal:\t"+sal)
+ }
+ class Manager(name:String,work:Int,add:Double) extends Employee {
+ var sal = 0.0d
+ def computeSal {
+ sal = work*20000+add
+ }
+ def disp = print("\nName:\t"+name+" Sal:\t"+sal)
+
+}
+ object Emp {
+ def main(args:Array[String]) {
+ 
+ var worker = new Array[Worker](5)
+ var manager = new Array[Manager](5)
+ for(i<- 0 until 5) {
+ println("Enter Worker Name")
+ val name = scala.io.StdIn.readLine()
+ println("Enter how many no of hours he worked")
+ val nw = scala.io.StdIn.readInt()
+ worker(i) = new Worker(name,nw)
+ worker(i).computeSal
+ println("Enter Manager Name")
+ val namem = scala.io.StdIn.readLine()
+ println("Enter months")
+ val nm = scala.io.StdIn.readInt()
+ println("Enter additional incentives if any")
+ val add = scala.io.StdIn.readInt()
+
+manager(i) = new Manager(namem,nm,add)
+ manager(i).computeSal
+ 
+ }
+ println("\n------Workers--------")
+ for(i<- 0 until 5) {
+ worker(i).disp
+ }
+ println("\n------Managers--------")
+ for(i<- 0 until 5) {
+ manager(i).disp
+ }
+ }
+ }
+ 
+
+Slip 11 Mongodb
+C:\Program Files\MongoDB\Server\4.2\bin>mongo  
+use Slip_11
+
+> db.createCollection("Footwear_brands")
+{ "ok" : 1 }
+> db.createCollection("Customer")
+{ "ok" : 1 }
+
+>(db.Footwear_brands.insert({"b_id":101,"bname":"Bata","Type":"Slippers","Price":1000})
+WriteResult({ "nInserted" : 1 })
+
+> db.Footwear_brands.insert({"b_id":102,"bname":"Spark","Type":"Shoes","Price":3000})
+WriteResult({ "nInserted" : 1 })
+
+> db.Footwear_brands.insert({"b_id":103,"bname":"Bata","Type":"Flip-Flops","Price":999})
+WriteResult({ "nInserted" : 1 })
+
+> db.Footwear_brands.insert({"b_id":104,"bname":"Paragon","Type":"Mustard","Price":599})
+WriteResult({ "nInserted" : 1 })
+
+> db.Footwear_brands.insert({"b_id":105,"bname":"Paragon","Type":"Slippers","Price":389})
+WriteResult({ "nInserted" : 1 })
+
+> db.Footwear_brands.find().pretty();
+{
+        "_id" : ObjectId("63b93efab1639f4a32bc21b1"),
+        "b_id" : 101,
+        "bname" : "Bata",
+        "Type" : "Slippers",
+        "Price" : 1000
+}
+{
+        "_id" : ObjectId("63b93f16b1639f4a32bc21b2"),
+        "b_id" : 102,
+        "bname" : "Spark",
+        "Type" : "Shoes",
+        "Price" : 3000
+}
+{
+        "_id" : ObjectId("63b93f24b1639f4a32bc21b3"),
+        "b_id" : 103,
+        "bname" : "Bata",
+        "Type" : "Flip-Flops",
+        "Price" : 999
+}
+{
+        "_id" : ObjectId("63b93f32b1639f4a32bc21b4"),
+        "b_id" : 104,
+        "bname" : "Paragon",
+        "Type" : "Mustard",
+        "Price" : 599
+}
+{
+        "_id" : ObjectId("63b93f3eb1639f4a32bc21b5"),
+        "b_id" : 105,
+        "bname" : "Paragon",
+        "Type" : "Slippers",
+        "Price" : 389
+}
+
+
+
+
+> db.Customer.insert({"c_id":111,"cname":"Manish","cont":[234567891,987654320],"bname":"Bata","Type":"Slippers","Price":1000})
+WriteResult({ "nInserted" : 1 })
+
+> db.Customer.insert({"c_id":112,"cname":"Sonu","cont":2345678910,"bname":"Paragon","Type":"Slippers","Price":389})
+WriteResult({ "nInserted" : 1 })
+
+> db.Customer.insert({"c_id":113,"cname":"Roma","cont":[2345678912,9876543204],"bname":"Bata","Type":"Flip-Flops","Price":999})
+WriteResult({ "nInserted" : 1 })
+
+> db.Customer.insert({"c_id":114,"cname":"Neelm","cont":[222567891,980974320],"bname":"Spark","Type":"Shoes","Price":3000})
+WriteResult({ "nInserted" : 1 })
+
+> db.Customer.insert({"c_id":111,"cname":"Manish","cont":[234567891,987654320],"bname":"Spark","Type":"Shoes","Price":3000})
+WriteResult({ "nInserted" : 1 })
+
+
+> db.Customer.find().pretty();
+{
+        "_id" : ObjectId("63b93faab1639f4a32bc21b6"),
+        "c_id" : 111,
+        "cname" : "Manish",
+        "cont" : [
+                234567891,
+                987654320
+        ],
+        "bname" : "Bata",
+        "Type" : "Slippers",
+        "Price" : 1000
+}
+{
+        "_id" : ObjectId("63b93fb9b1639f4a32bc21b7"),
+        "c_id" : 112,
+        "cname" : "Sonu",
+        "cont" : 2345678910,
+        "bname" : "Paragon",
+        "Type" : "Slippers",
+        "Price" : 389
+}
+{
+        "_id" : ObjectId("63b93fd2b1639f4a32bc21b8"),
+        "c_id" : 113,
+        "cname" : "Roma",
+        "cont" : [
+                2345678912,
+                9876543204
+        ],
+        "bname" : "Bata",
+        "Type" : "Flip-Flops",
+        "Price" : 999
+}
+{
+        "_id" : ObjectId("63b93ff6b1639f4a32bc21b9"),
+        "c_id" : 114,
+        "cname" : "Neelm",
+        "cont" : [
+                222567891,
+                980974320
+        ],
+        "bname" : "Spark",
+        "Type" : "Shoes",
+        "Price" : 3000
+}
+{
+        "_id" : ObjectId("63b94004b1639f4a32bc21ba"),
+        "c_id" : 111,
+        "cname" : "Manish",
+        "cont" : [
+                234567891,
+                987654320
+        ],
+        "bname" : "Spark",
+        "Type" : "Shoes",
+        "Price" : 3000
+}
+
+
+
+
+
+
+Q1)
+solution:-
+
+> db.Footwear_brands.distinct("bname");
+[ "Bata", "Paragon", "Spark" ]
+
+
+Q2)
+solution:-
+
+> db.Footwear_brands.find({"bname":"Bata"}).pretty();
+{
+        "_id" : ObjectId("63b93efab1639f4a32bc21b1"),
+        "b_id" : 101,
+        "bname" : "Bata",
+        "Type" : "Slippers",
+        "Price" : 1000
+}
+{
+        "_id" : ObjectId("63b93f24b1639f4a32bc21b3"),
+        "b_id" : 103,
+        "bname" : "Bata",
+        "Type" : "Flip-Flops",
+        "Price" : 999
+}
+
+
+Q3)
+solution:-
+
+> db.Customer.find({"bname":"Spark"},{"cname":1}).pretty();
+{ "_id" : ObjectId("63b93ff6b1639f4a32bc21b9"), "cname" : "Neelm" }
+{ "_id" : ObjectId("63b94004b1639f4a32bc21ba"), "cname" : "Manish" }
+
+
+Q4
+solution:-
+> db.Customer.aggregate([{$group: {_id: {cname: "$cname"},uniqueIds:{$addToSet:"$_id"},count: {$sum: 1}}},{$match: {count: {"$gt": 1}}} ])
+
+{ "_id" : { "cname" : "Manish" }, "uniqueIds" : [ ObjectId("63b93faab1639f4a32bc21b6"), ObjectId("63b94004b1639f4a32bc21ba") ], "count" : 2 }
